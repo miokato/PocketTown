@@ -60,12 +60,6 @@ struct MapView: View {
         showLocationAlert = true
     }
     
-    /// マップで長押しタップ
-    private func handleLongTapMap() {
-        
-        
-    }
-    
     private func isLocationDenied() -> Bool {
         locationStore.authorizationStatus == .denied || locationStore.authorizationStatus == .restricted
     }
@@ -73,16 +67,22 @@ struct MapView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            Map(position: $position) {
-                UserAnnotation()
-                
-                if let location = locationStore.currentLocation {
-                    MapCircle(center: location.coordinate, radius: 1000)
-                        .foregroundStyle(.blue.opacity(0.1))
-                        .stroke(.blue, lineWidth: 1)
+            MapReader { proxy in
+                Map(position: $position) {
+                    UserAnnotation()
+                    
+                    if let location = locationStore.currentLocation {
+                        MapCircle(center: location.coordinate, radius: 1000)
+                            .foregroundStyle(.blue.opacity(0.1))
+                            .stroke(.blue, lineWidth: 1)
+                    }
+                }
+                .onTapGesture { location in
+                    if let coord = proxy.convert(location, from: .local) {
+                        log("\(coord)", with: .debug)
+                    }
                 }
             }
-            .onLongPressGesture(perform: handleLongTapMap)
             if isLocationDenied() {
                 locationDeniedOverlay
             }
