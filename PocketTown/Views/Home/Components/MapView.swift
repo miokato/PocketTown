@@ -13,7 +13,6 @@ struct MapView: View {
     @Environment(MapPinStore.self) private var mapPinStore
     
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
-    @State private var showLocationAlert = false
     @State private var isShowAddPinModal = false
     
     // MARK: - Private Methods
