@@ -72,6 +72,16 @@ struct MapView: View {
                 Marker(pin.title, coordinate: pin.coordinate)
             }
         }
+        .mapControls {
+            MapCompass()
+                .mapControlVisibility(.visible)
+            MapPitchToggle()
+                .mapControlVisibility(.visible)
+            MapScaleView()
+                .mapControlVisibility(.hidden)
+            MapUserLocationButton()
+                .mapControlVisibility(.visible)
+        }
     }
 }
 
