@@ -1,7 +1,7 @@
 import Foundation
-import WeatherKit
+@preconcurrency import WeatherKit
 
-struct Weather {
+struct Weather: Sendable, Codable {
     let condition: WeatherCondition
     let temperature: Measurement<UnitTemperature>
     let temperatureMax: Measurement<UnitTemperature>

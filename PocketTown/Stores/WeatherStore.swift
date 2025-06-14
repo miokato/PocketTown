@@ -2,7 +2,7 @@ import Foundation
 import CoreLocation
 import SwiftUI
 
-@Observable
+@Observable @MainActor
 final class WeatherStore {
     // MARK: - Properties
     private let weatherService = WeatherService()

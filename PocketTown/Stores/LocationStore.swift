@@ -1,7 +1,7 @@
 import CoreLocation
 import SwiftUI
 
-@Observable
+@Observable @MainActor
 final class LocationStore {
     private let locationService = LocationService()
     private var locationTask: Task<Void, Never>?
@@ -88,8 +88,11 @@ final class LocationStore {
     }
     
     deinit {
-        locationTask?.cancel()
-        authorizationTask?.cancel()
+        Task { [weak self] in
+            guard let self = self else { return }
+            await locationTask?.cancel()
+            await authorizationTask?.cancel()
+        }
     }
 }
 

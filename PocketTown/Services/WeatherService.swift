@@ -1,5 +1,5 @@
 import Foundation
-import WeatherKit
+@preconcurrency import WeatherKit
 import CoreLocation
 
 actor WeatherService {
