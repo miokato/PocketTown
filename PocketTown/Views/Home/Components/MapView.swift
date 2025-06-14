@@ -49,6 +49,17 @@ struct MapView: View {
         updateRegion(with: location)
     }
     
+    private func handleAppear() {
+        requestLocationPermissionIfNeeded()
+    }
+    
+    private func handleLocationError() {
+        guard let _ = locationStore.locationError else {
+            return
+        }
+        showLocationAlert = true
+    }
+    
     // MARK: - Body
     var body: some View {
         ZStack {
@@ -57,8 +68,8 @@ struct MapView: View {
                 
                 if let location = locationStore.currentLocation {
                     MapCircle(center: location.coordinate, radius: 1000)
-                        .foregroundStyle(.blue.opacity(0.2))
-                        .stroke(.blue, lineWidth: 2)
+                        .foregroundStyle(.blue.opacity(0.1))
+                        .stroke(.blue, lineWidth: 1)
                 }
             }
             if locationStore.authorizationStatus == .denied || locationStore.authorizationStatus == .restricted {
@@ -70,12 +81,8 @@ struct MapView: View {
         } message: {
             Text(locationStore.locationError?.localizedDescription ?? String(localized: "map.error.message"))
         }
-        .onAppear {
-            requestLocationPermissionIfNeeded()
-        }
-        .onChange(of: locationStore.locationError) { _, newError in
-            showLocationAlert = newError != nil
-        }
+        .onAppear(perform: handleAppear)
+        .onChange(of: locationStore.locationError, handleLocationError)
         .onChange(of: locationStore.currentLocation, handleChangeLocation)
     }
     
