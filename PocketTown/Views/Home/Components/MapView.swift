@@ -54,6 +54,12 @@ struct MapView: View {
         ZStack {
             Map(position: $position) {
                 UserAnnotation()
+                
+                if let location = locationStore.currentLocation {
+                    MapCircle(center: location.coordinate, radius: 1000)
+                        .foregroundStyle(.blue.opacity(0.2))
+                        .stroke(.blue, lineWidth: 2)
+                }
             }
             if locationStore.authorizationStatus == .denied || locationStore.authorizationStatus == .restricted {
                 locationDeniedOverlay
