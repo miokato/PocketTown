@@ -10,10 +10,7 @@ import MapKit
 
 struct MapView: View {
     @Environment(LocationStore.self) private var locationStore
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 35.6812, longitude: 139.7671),
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    )
+    @State private var position = MapCameraPosition.region(.init(center: .init(latitude: 35, longitude: 139), span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)))
     @State private var isLocationUpdated = false
     @State private var showLocationAlert = false
     
@@ -29,10 +26,8 @@ struct MapView: View {
         let span = calculateSpanForRadius(1000, at: coordinate)
         
         withAnimation {
-            region = MKCoordinateRegion(
-                center: coordinate,
-                span: span
-            )
+            let position = MapCameraPosition.region(.init(center: coordinate, span: span))
+            self.position = position
         }
         
         if !isLocationUpdated {
@@ -57,7 +52,7 @@ struct MapView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $region, showsUserLocation: true)
+            Map(position: $position)
             if locationStore.authorizationStatus == .denied || locationStore.authorizationStatus == .restricted {
                 locationDeniedOverlay
             }
