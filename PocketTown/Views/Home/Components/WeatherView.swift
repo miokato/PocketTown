@@ -8,11 +8,132 @@
 import SwiftUI
 
 struct WeatherView: View {
+    // MARK: - Properties
+    @Environment(WeatherStore.self) private var weatherStore
+    
+    // MARK: - Temperature Formatter
+    private var temperatureFormatter: MeasurementFormatter {
+        let formatter = MeasurementFormatter()
+        formatter.numberFormatter.maximumFractionDigits = 0
+        formatter.unitStyle = .short
+        return formatter
+    }
+    
+    // MARK: - Body
     var body: some View {
-        Text("WeatherView")
+        Group {
+            if weatherStore.isLoading {
+                loadingView
+            } else if let weather = weatherStore.weather {
+                weatherContent(weather)
+            } else if weatherStore.error != nil {
+                errorView
+            } else {
+                emptyView
+            }
+        }
+        .padding()
+        .background(.regularMaterial)
+        .cornerRadius(16)
+        .task {
+            weatherStore.startObservingLocation()
+        }
+        .onDisappear {
+            weatherStore.stopObservingLocation()
+        }
+    }
+    
+    // MARK: - View Builders
+    @ViewBuilder
+    private func weatherContent(_ weather: Weather) -> some View {
+        HStack(spacing: 20) {
+            // 天気アイコン
+            Image(systemName: weather.symbolName)
+                .font(.system(size: 50))
+                .foregroundStyle(.tint)
+                .symbolRenderingMode(.multicolor)
+            
+            VStack(alignment: .leading, spacing: 8) {
+                // 天気の説明
+                Text(weather.description)
+                    .font(.headline)
+                
+                // 現在の気温
+                HStack(spacing: 12) {
+                    Text(temperatureFormatter.string(from: weather.temperature))
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                    
+                    // 最高/最低気温
+                    HStack(spacing: 4) {
+                        Label(temperatureFormatter.string(from: weather.temperatureMax), systemImage: "arrow.up")
+                            .font(.caption)
+                            .foregroundColor(.red)
+                        
+                        Label(temperatureFormatter.string(from: weather.temperatureMin), systemImage: "arrow.down")
+                            .font(.caption)
+                            .foregroundColor(.blue)
+                    }
+                }
+                
+                // 湿度
+                Label("\(Int(weather.humidity * 100))%", systemImage: "humidity")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+        }
+    }
+    
+    @ViewBuilder
+    private var loadingView: some View {
+        HStack {
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+            Text("天気情報を取得中...")
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding()
+    }
+    
+    @ViewBuilder
+    private var errorView: some View {
+        VStack(spacing: 8) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.title)
+                .foregroundColor(.orange)
+            
+            Text("天気情報を取得できません")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            
+            Button("再試行") {
+                Task {
+                    await weatherStore.refreshWeather()
+                }
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    @ViewBuilder
+    private var emptyView: some View {
+        HStack {
+            Image(systemName: "cloud")
+                .font(.title)
+                .foregroundColor(.secondary)
+            Text("天気情報を取得中...")
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 
 #Preview {
     WeatherView()
+        .environment(WeatherStore(locationStore: LocationStore()))
 }

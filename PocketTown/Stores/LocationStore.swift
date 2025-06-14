@@ -72,7 +72,8 @@ extension LocationStore: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        locationError = error
+        log("\(error)", with: .error)
+        locationError = .locationUnavailable
     }
 }
 

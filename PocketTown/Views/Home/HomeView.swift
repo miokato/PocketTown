@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(LocationStore.self) private var locationStore
+    
+    private func handleOnAppear() {
+        locationStore.startLocationUpdates()
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             DateTimeView()
             WeatherView()
             MapView()
         }
+        .onAppear(perform: handleOnAppear)
     }
 }
 
 #Preview {
-    HomeView()
-        .environment(LocationStore())
+    let locationStore = LocationStore()
+    return HomeView()
+        .environment(locationStore)
+        .environment(WeatherStore(locationStore: locationStore))
 }

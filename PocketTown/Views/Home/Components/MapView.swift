@@ -59,13 +59,6 @@ struct MapView: View {
     var body: some View {
         ZStack {
             Map(coordinateRegion: $region, showsUserLocation: true)
-                .task {
-                    await observeLocationUpdates()
-                }
-                .onAppear {
-                    requestLocationPermissionIfNeeded()
-                }
-            
             if locationStore.authorizationStatus == .denied || locationStore.authorizationStatus == .restricted {
                 locationDeniedOverlay
             }
@@ -74,6 +67,12 @@ struct MapView: View {
             Button("OK", role: .cancel) { }
         } message: {
             Text(locationStore.locationError?.localizedDescription ?? "位置情報の取得中にエラーが発生しました")
+        }
+        .task {
+            await observeLocationUpdates()
+        }
+        .onAppear {
+            requestLocationPermissionIfNeeded()
         }
         .onChange(of: locationStore.locationError) { _, newError in
             showLocationAlert = newError != nil
