@@ -52,7 +52,9 @@ struct MapView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            Map(position: $position)
+            Map(position: $position) {
+                UserAnnotation()
+            }
             if locationStore.authorizationStatus == .denied || locationStore.authorizationStatus == .restricted {
                 locationDeniedOverlay
             }
