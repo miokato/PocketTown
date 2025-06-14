@@ -9,9 +9,16 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(LocationStore.self) private var locationStore
+    @Environment(WeatherStore.self) private var weatherStore
     
     private func handleOnAppear() {
         locationStore.startLocationUpdates()
+    }
+    
+    private func handleChangeLocation() {
+        Task {
+            await weatherStore.refreshWeather(by: locationStore.currentLocation)
+        }
     }
     
     var body: some View {
@@ -21,12 +28,12 @@ struct HomeView: View {
             MapView()
         }
         .onAppear(perform: handleOnAppear)
+        .onChange(of: locationStore.currentLocation, handleChangeLocation)
     }
 }
 
 #Preview {
-    let locationStore = LocationStore()
-    return HomeView()
-        .environment(locationStore)
-        .environment(WeatherStore(locationStore: locationStore))
+    HomeView()
+        .environment(LocationStore())
+        .environment(WeatherStore())
 }

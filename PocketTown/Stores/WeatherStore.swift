@@ -6,37 +6,14 @@ import SwiftUI
 final class WeatherStore {
     // MARK: - Properties
     private let weatherService = WeatherService()
-    private let locationStore: LocationStore
-    private var updateTask: Task<Void, Never>?
     
     var weather: Weather?
     var isLoading = false
     var error: Error?
     
-    // MARK: - Initialization
-    init(locationStore: LocationStore) {
-        self.locationStore = locationStore
-    }
-    
     // MARK: - Public Methods
-    func startObservingLocation() {
-        updateTask?.cancel()
-        updateTask = Task { [weak self] in
-            guard let self = self else { return }
-            
-            for await location in self.locationStore.locationUpdates() {
-                await self.updateWeather(for: location)
-            }
-        }
-    }
-    
-    func stopObservingLocation() {
-        updateTask?.cancel()
-        updateTask = nil
-    }
-    
-    func refreshWeather() async {
-        guard let location = locationStore.currentLocation else { return }
+    func refreshWeather(by location: CLLocation?) async {
+        guard let location = location else { return }
         await updateWeather(for: location)
     }
     

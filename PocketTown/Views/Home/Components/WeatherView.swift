@@ -10,6 +10,7 @@ import SwiftUI
 struct WeatherView: View {
     // MARK: - Properties
     @Environment(WeatherStore.self) private var weatherStore
+    @Environment(LocationStore.self) private var locationStore
     
     // MARK: - Temperature Formatter
     private var temperatureFormatter: MeasurementFormatter {
@@ -35,12 +36,6 @@ struct WeatherView: View {
         .padding()
         .background(.regularMaterial)
         .cornerRadius(16)
-        .task {
-            weatherStore.startObservingLocation()
-        }
-        .onDisappear {
-            weatherStore.stopObservingLocation()
-        }
     }
     
     // MARK: - View Builders
@@ -111,7 +106,7 @@ struct WeatherView: View {
             
             Button("再試行") {
                 Task {
-                    await weatherStore.refreshWeather()
+                    await weatherStore.refreshWeather(by: locationStore.currentLocation)
                 }
             }
             .buttonStyle(.bordered)
@@ -135,5 +130,6 @@ struct WeatherView: View {
 
 #Preview {
     WeatherView()
-        .environment(WeatherStore(locationStore: LocationStore()))
+        .environment(WeatherStore())
+        .environment(LocationStore())
 }

@@ -24,12 +24,6 @@ struct MapView: View {
         }
     }
     
-    private func observeLocationUpdates() async {
-        for await location in locationStore.locationUpdates() {
-            updateRegion(with: location)
-        }
-    }
-    
     private func updateRegion(with location: CLLocation) {
         let coordinate = location.coordinate
         let span = calculateSpanForRadius(1000, at: coordinate)
@@ -55,6 +49,11 @@ struct MapView: View {
         return region.span
     }
     
+    private func handleChangeLocation() {
+        guard let location = locationStore.currentLocation else { return }
+        updateRegion(with: location)
+    }
+    
     // MARK: - Body
     var body: some View {
         ZStack {
@@ -68,15 +67,13 @@ struct MapView: View {
         } message: {
             Text(locationStore.locationError?.localizedDescription ?? "位置情報の取得中にエラーが発生しました")
         }
-        .task {
-            await observeLocationUpdates()
-        }
         .onAppear {
             requestLocationPermissionIfNeeded()
         }
         .onChange(of: locationStore.locationError) { _, newError in
             showLocationAlert = newError != nil
         }
+        .onChange(of: locationStore.currentLocation, handleChangeLocation)
     }
     
     // MARK: - View Builders
