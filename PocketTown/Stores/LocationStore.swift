@@ -40,7 +40,7 @@ final class LocationStore {
             Task { [weak self] in
                 guard let self else { return }
                 
-                for await location in await locationService.locationUpdates() {
+                for await location in locationService.locationUpdates() {
                     continuation.yield(location)
                 }
                 
@@ -51,10 +51,11 @@ final class LocationStore {
     
     // MARK: - Private Methods
     private func startMonitoringAuthorization() {
+        authorizationTask?.cancel()
         authorizationTask = Task { [weak self] in
             guard let self else { return }
             
-            for await status in await locationService.authorizationUpdates() {
+            for await status in locationService.authorizationUpdates() {
                 await MainActor.run {
                     self.authorizationStatus = status
                     self.updateLocationError(for: status)
@@ -62,10 +63,11 @@ final class LocationStore {
             }
         }
         
+        locationTask?.cancel()
         locationTask = Task { [weak self] in
             guard let self else { return }
             
-            for await location in await locationService.locationUpdates() {
+            for await location in locationService.locationUpdates() {
                 await MainActor.run {
                     self.currentLocation = location
                     self.locationError = nil

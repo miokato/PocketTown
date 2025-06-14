@@ -1,7 +1,8 @@
 @preconcurrency import CoreLocation
 import Foundation
 
-actor LocationService: NSObject {
+@MainActor
+final class LocationService: NSObject {
     private let locationManager: CLLocationManager
     private var locationContinuation: AsyncStream<CLLocation>.Continuation?
     private var authorizationContinuation: AsyncStream<CLAuthorizationStatus>.Continuation?
@@ -9,9 +10,7 @@ actor LocationService: NSObject {
     override init() {
         self.locationManager = CLLocationManager()
         super.init()
-        Task {
-            await setupLocationManager()
-        }
+        setupLocationManager()
     }
     
     private func setupLocationManager() {
@@ -22,28 +21,22 @@ actor LocationService: NSObject {
     
     // MARK: - Public Methods
     func requestLocationPermission() async {
-        await MainActor.run {
-            locationManager.requestWhenInUseAuthorization()
-        }
+        locationManager.requestWhenInUseAuthorization()
     }
     
     func startLocationUpdates() async {
-        await MainActor.run {
-            locationManager.startUpdatingLocation()
-        }
+        locationManager.startUpdatingLocation()
     }
     
     func stopLocationUpdates() async {
-        await MainActor.run {
-            locationManager.stopUpdatingLocation()
-        }
+        locationManager.stopUpdatingLocation()
     }
     
     func locationUpdates() -> AsyncStream<CLLocation> {
         AsyncStream { continuation in
             self.locationContinuation = continuation
             continuation.onTermination = { [weak self] _ in
-                Task { [weak self] in
+                Task {
                     await self?.stopLocationUpdates()
                 }
             }
@@ -53,9 +46,7 @@ actor LocationService: NSObject {
     func authorizationUpdates() -> AsyncStream<CLAuthorizationStatus> {
         AsyncStream { continuation in
             self.authorizationContinuation = continuation
-            Task { @MainActor in
-                continuation.yield(locationManager.authorizationStatus)
-            }
+            continuation.yield(locationManager.authorizationStatus)
         }
     }
 }
