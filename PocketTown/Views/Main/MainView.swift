@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var locationStore = LocationStore()
+    
     var body: some View {
-        Text("Hello, World!")
+        HomeView()
+            .environment(locationStore)
     }
 }
 

@@ -9,10 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text("Hello, World!")
+        VStack(spacing: 0) {
+            DateTimeView()
+            WeatherView()
+            MapView()
+        }
     }
 }
 
 #Preview {
     HomeView()
+        .environment(LocationStore())
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct PocketTownApp: App {
+    
     var body: some Scene {
         WindowGroup {
             MainView()
