@@ -11,12 +11,15 @@ import MapKit
 struct MapSheetView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(MapPinStore.self) private var mapPinStore
-    
-    let coordinate: CLLocationCoordinate2D
-    
+    @Environment(LocationStore.self) private var locationStore
+
     @State private var title = ""
     @State private var showEmptyTitleAlert = false
     @FocusState private var isTitleFieldFocused: Bool
+    
+    private var coordinate: CLLocationCoordinate2D {
+        locationStore.selectedLocation ?? .init(latitude: 0, longitude: 0)
+    }
     
     // MARK: - Private Methods
     
@@ -27,6 +30,7 @@ struct MapSheetView: View {
             showEmptyTitleAlert = true
             return
         }
+        guard let coordinate = locationStore.selectedLocation else { return }
         
         let pin = MapPin(
             title: trimmedTitle,
@@ -59,12 +63,12 @@ struct MapSheetView: View {
                 .padding(.top, 20)
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("mapsheet.label.coordinates", comment: "Coordinates label")
+                    Text("mapsheet.label.coordinates")
                         .font(.headline)
                     
                     HStack {
                         Label {
-                            Text("mapsheet.label.latitude", comment: "Latitude label") + Text(": \(coordinate.latitude, format: .number.precision(.fractionLength(6)))")
+                            Text("mapsheet.label.latitude") + Text(": \(coordinate.latitude, format: .number.precision(.fractionLength(6)))")
                         } icon: {
                             Image(systemName: "location")
                         }
@@ -73,7 +77,7 @@ struct MapSheetView: View {
                         Spacer()
                         
                         Label {
-                            Text("mapsheet.label.longitude", comment: "Longitude label") + Text(": \(coordinate.longitude, format: .number.precision(.fractionLength(6)))")
+                            Text("mapsheet.label.longitude") + Text(": \(coordinate.longitude, format: .number.precision(.fractionLength(6)))")
                         } icon: {
                             Image(systemName: "location")
                         }
@@ -112,6 +116,7 @@ struct MapSheetView: View {
 }
 
 #Preview {
-    MapSheetView(coordinate: CLLocationCoordinate2D(latitude: 35.681236, longitude: 139.767125))
+    MapSheetView()
         .environment(MapPinStore())
+        .environment(LocationStore())
 }

@@ -16,7 +16,6 @@ struct MapView: View {
     @State private var isLocationUpdated = false
     @State private var showLocationAlert = false
     @State private var isShowAddPinModal = false
-    @State private var selectedCoordinate: CLLocationCoordinate2D?
     
     // MARK: - Private Methods
     
@@ -57,7 +56,7 @@ struct MapView: View {
     // MARK: - Methods (handler)
     
     private func handleAddPin(at location: CLLocationCoordinate2D) {
-        selectedCoordinate = location
+        locationStore.selectedLocation = location
         isShowAddPinModal = true
     }
     
@@ -110,10 +109,8 @@ struct MapView: View {
             Text(locationStore.locationError?.localizedDescription ?? String(localized: "map.error.message"))
         }
         .sheet(isPresented: $isShowAddPinModal, content: {
-            if let coordinate = selectedCoordinate {
-                MapSheetView(coordinate: coordinate)
-                    .presentationDetents([.medium])
-            }
+            MapSheetView()
+                .presentationDetents([.medium])
         })
         .onAppear(perform: handleAppear)
         .onChange(of: locationStore.locationError, handleLocationError)

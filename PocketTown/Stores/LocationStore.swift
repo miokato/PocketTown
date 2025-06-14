@@ -8,6 +8,7 @@ final class LocationStore {
     private var authorizationTask: Task<Void, Never>?
     
     var currentLocation: CLLocation?
+    var selectedLocation: CLLocationCoordinate2D?
     var authorizationStatus: CLAuthorizationStatus = .notDetermined
     var locationError: LocationError?
     
