@@ -11,9 +11,11 @@ import MapKit
 struct MapView: View {
     @Environment(LocationStore.self) private var locationStore
     @Environment(MapPinStore.self) private var mapPinStore
+    
     @State private var position = MapCameraPosition.region(.init(center: .init(latitude: 35, longitude: 139), span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)))
     @State private var isLocationUpdated = false
     @State private var showLocationAlert = false
+    @State private var isShowAddPinModal = false
     
     // MARK: - Private Methods
     
@@ -62,6 +64,11 @@ struct MapView: View {
     
     // MARK: - Methods (handler)
     
+    private func handleAddPin(at location: CLLocationCoordinate2D) {
+        isShowAddPinModal = true
+//        addPin(at: location)
+    }
+    
     private func handleChangeLocation() {
         guard let location = locationStore.currentLocation else { return }
         updateRegion(with: location)
@@ -97,7 +104,7 @@ struct MapView: View {
                 }
                 .gesture(LongPressGesture { location in
                     if let coordinate = proxy.convert(location, from: .global) {
-                        addPin(at: coordinate)
+                        handleAddPin(at: coordinate)
                     }
                 })
             }
@@ -110,6 +117,10 @@ struct MapView: View {
         } message: {
             Text(locationStore.locationError?.localizedDescription ?? String(localized: "map.error.message"))
         }
+        .sheet(isPresented: $isShowAddPinModal, content: {
+            MapSheetView()
+                .presentationDetents([.medium, .large])
+        })
         .onAppear(perform: handleAppear)
         .onChange(of: locationStore.locationError, handleLocationError)
         .onChange(of: locationStore.currentLocation, handleChangeLocation)
