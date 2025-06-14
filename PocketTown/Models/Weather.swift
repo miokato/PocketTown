@@ -31,75 +31,75 @@ extension WeatherCondition {
     var description: String {
         switch self {
         case .clear:
-            return "晴れ"
+            return String(localized: "weather.condition.clear")
         case .cloudy:
-            return "曇り"
+            return String(localized: "weather.condition.cloudy")
         case .rain:
-            return "雨"
+            return String(localized: "weather.condition.rain")
         case .snow:
-            return "雪"
+            return String(localized: "weather.condition.snow")
         case .sleet:
-            return "みぞれ"
+            return String(localized: "weather.condition.sleet")
         case .hail:
-            return "ひょう"
+            return String(localized: "weather.condition.hail")
         case .thunderstorms:
-            return "雷雨"
+            return String(localized: "weather.condition.thunderstorm")
         case .tropicalStorm:
-            return "熱帯低気圧"
+            return String(localized: "weather.condition.tropicalStorm")
         case .hurricane:
-            return "ハリケーン"
+            return String(localized: "weather.condition.hurricane")
         case .smoky:
-            return "煙霧"
+            return String(localized: "weather.condition.smoky")
         case .haze:
-            return "もや"
+            return String(localized: "weather.condition.haze")
         case .windy:
-            return "強風"
+            return String(localized: "weather.condition.windy")
         case .frigid:
-            return "極寒"
+            return String(localized: "weather.condition.frigid")
         case .hot:
-            return "猛暑"
+            return String(localized: "weather.condition.hot")
         case .flurries:
-            return "にわか雪"
+            return String(localized: "weather.condition.flurries")
         case .partlyCloudy:
-            return "晴れ時々曇り"
+            return String(localized: "weather.condition.partlyCloudy")
         case .mostlyClear:
-            return "おおむね晴れ"
+            return String(localized: "weather.condition.mostlyClear")
         case .mostlyCloudy:
-            return "おおむね曇り"
+            return String(localized: "weather.condition.mostlyCloudy")
         case .drizzle:
-            return "霧雨"
+            return String(localized: "weather.condition.drizzle")
         case .heavyRain:
-            return "大雨"
+            return String(localized: "weather.condition.heavyRain")
         case .heavySnow:
-            return "大雪"
+            return String(localized: "weather.condition.heavySnow")
         case .sunFlurries:
-            return "晴れ時々雪"
+            return String(localized: "weather.condition.sunFlurries")
         case .sunShowers:
-            return "晴れ時々雨"
+            return String(localized: "weather.condition.sunShowers")
         case .isolatedThunderstorms:
-            return "ところにより雷雨"
+            return String(localized: "weather.condition.isolatedThunderstorms")
         case .scatteredThunderstorms:
-            return "ところどころ雷雨"
+            return String(localized: "weather.condition.scatteredThunderstorms")
         case .strongStorms:
-            return "激しい嵐"
+            return String(localized: "weather.condition.strongStorms")
         case .blizzard:
-            return "吹雪"
+            return String(localized: "weather.condition.blizzard")
         case .blowingDust:
-            return "砂塵"
+            return String(localized: "weather.condition.dust")
         case .blowingSnow:
-            return "地吹雪"
+            return String(localized: "weather.condition.blowingSnow")
         case .freezingDrizzle:
-            return "着氷性の霧雨"
+            return String(localized: "weather.condition.freezingDrizzle")
         case .freezingRain:
-            return "着氷性の雨"
+            return String(localized: "weather.condition.freezingRain")
         case .wintryMix:
-            return "雨雪混じり"
+            return String(localized: "weather.condition.wintryMix")
         case .breezy:
-            return "そよ風"
+            return String(localized: "weather.condition.breezy")
         case .foggy:
-            return "霧"
+            return String(localized: "weather.condition.foggy")
         @unknown default:
-            return "不明"
+            return String(localized: "weather.condition.unknown")
         }
     }
 }

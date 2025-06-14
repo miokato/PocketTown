@@ -59,10 +59,10 @@ struct MapView: View {
                 locationDeniedOverlay
             }
         }
-        .alert("位置情報エラー", isPresented: $showLocationAlert) {
+        .alert(String(localized: "map.error.title"), isPresented: $showLocationAlert) {
             Button("OK", role: .cancel) { }
         } message: {
-            Text(locationStore.locationError?.localizedDescription ?? "位置情報の取得中にエラーが発生しました")
+            Text(locationStore.locationError?.localizedDescription ?? String(localized: "map.error.message"))
         }
         .onAppear {
             requestLocationPermissionIfNeeded()
@@ -81,15 +81,15 @@ struct MapView: View {
                 .font(.system(size: 50))
                 .foregroundColor(.secondary)
             
-            Text("位置情報へのアクセスが必要です")
+            Text(String(localized: "map.permission.title"))
                 .font(.headline)
             
-            Text("設定アプリから位置情報の使用を許可してください")
+            Text(String(localized: "map.permission.message"))
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
             
-            Button("設定を開く") {
+            Button(String(localized: "map.button.settings")) {
                 if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(settingsURL)
                 }

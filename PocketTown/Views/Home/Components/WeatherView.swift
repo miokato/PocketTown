@@ -86,7 +86,7 @@ struct WeatherView: View {
         HStack {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle())
-            Text("天気情報を取得中...")
+            Text(String(localized: "weather.loading.message"))
                 .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity)
@@ -100,11 +100,11 @@ struct WeatherView: View {
                 .font(.title)
                 .foregroundColor(.orange)
             
-            Text("天気情報を取得できません")
+            Text(String(localized: "weather.error.unavailable"))
                 .font(.caption)
                 .foregroundColor(.secondary)
             
-            Button("再試行") {
+            Button(String(localized: "weather.button.retry")) {
                 Task {
                     await weatherStore.refreshWeather(by: locationStore.currentLocation)
                 }
@@ -121,7 +121,7 @@ struct WeatherView: View {
             Image(systemName: "cloud")
                 .font(.title)
                 .foregroundColor(.secondary)
-            Text("天気情報を取得中...")
+            Text(String(localized: "weather.loading.message"))
                 .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity)

@@ -43,11 +43,11 @@ enum WeatherError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .networkError:
-            return "ネットワークエラーが発生しました"
+            return String(localized: "error.network")
         case .locationUnavailable:
-            return "位置情報を取得できません"
+            return String(localized: "error.location.unavailable")
         case .serviceUnavailable:
-            return "天気情報サービスが利用できません"
+            return String(localized: "error.weather.unavailable")
         }
     }
 }

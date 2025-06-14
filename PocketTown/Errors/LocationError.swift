@@ -16,11 +16,11 @@ enum LocationError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .permissionDenied:
-            return "位置情報の使用が許可されていません"
+            return String(localized: "error.location.permission")
         case .locationUnavailable:
-            return "現在位置を取得できません"
+            return String(localized: "error.location.unavailable")
         case .networkError:
-            return "ネットワークエラーが発生しました"
+            return String(localized: "error.network")
         }
     }
 }
