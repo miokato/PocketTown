@@ -16,6 +16,11 @@ struct MapView: View {
     @State private var showLocationAlert = false
     
     // MARK: - Private Methods
+    
+    private func isLocationDenied() -> Bool {
+        locationStore.authorizationStatus == .denied || locationStore.authorizationStatus == .restricted
+    }
+    
     private func requestLocationPermissionIfNeeded() {
         if locationStore.authorizationStatus == .notDetermined {
             locationStore.requestLocationPermission()
@@ -45,6 +50,18 @@ struct MapView: View {
         return region.span
     }
     
+    private func addPin(at coordinate: CLLocationCoordinate2D) {
+        let pin = MapPin(
+            title: "ピン",
+            description: "",
+            latitude: coordinate.latitude,
+            longitude: coordinate.longitude
+        )
+        mapPinStore.addPin(pin)
+    }
+    
+    // MARK: - Methods (handler)
+    
     private func handleChangeLocation() {
         guard let location = locationStore.currentLocation else { return }
         updateRegion(with: location)
@@ -59,20 +76,6 @@ struct MapView: View {
             return
         }
         showLocationAlert = true
-    }
-    
-    private func isLocationDenied() -> Bool {
-        locationStore.authorizationStatus == .denied || locationStore.authorizationStatus == .restricted
-    }
-    
-    private func addPin(at coordinate: CLLocationCoordinate2D) {
-        let pin = MapPin(
-            title: "ピン",
-            description: "",
-            latitude: coordinate.latitude,
-            longitude: coordinate.longitude
-        )
-        mapPinStore.addPin(pin)
     }
     
     // MARK: - Body
