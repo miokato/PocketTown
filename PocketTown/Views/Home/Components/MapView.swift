@@ -10,6 +10,7 @@ import MapKit
 
 struct MapView: View {
     @Environment(LocationStore.self) private var locationStore
+    @Environment(MapPinStore.self) private var mapPinStore
     @State private var position = MapCameraPosition.region(.init(center: .init(latitude: 35, longitude: 139), span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)))
     @State private var isLocationUpdated = false
     @State private var showLocationAlert = false
@@ -64,6 +65,16 @@ struct MapView: View {
         locationStore.authorizationStatus == .denied || locationStore.authorizationStatus == .restricted
     }
     
+    private func addPin(at coordinate: CLLocationCoordinate2D) {
+        let pin = MapPin(
+            title: "ピン",
+            description: "",
+            latitude: coordinate.latitude,
+            longitude: coordinate.longitude
+        )
+        mapPinStore.addPin(pin)
+    }
+    
     // MARK: - Body
     var body: some View {
         ZStack {
@@ -76,12 +87,16 @@ struct MapView: View {
                             .foregroundStyle(.blue.opacity(0.1))
                             .stroke(.blue, lineWidth: 1)
                     }
-                }
-                .onTapGesture { location in
-                    if let coord = proxy.convert(location, from: .local) {
-                        log("\(coord)", with: .debug)
+                    
+                    ForEach(mapPinStore.pins) { pin in
+                        Marker(pin.title, coordinate: pin.coordinate)
                     }
                 }
+                .gesture(LongPressGesture { location in
+                    if let coordinate = proxy.convert(location, from: .global) {
+                        addPin(at: coordinate)
+                    }
+                })
             }
             if isLocationDenied() {
                 locationDeniedOverlay
@@ -130,4 +145,6 @@ struct MapView: View {
 #Preview {
     MapView()
         .environment(LocationStore())
+        .environment(MapPinStore())
 }
+
