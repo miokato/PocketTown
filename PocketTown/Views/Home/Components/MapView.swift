@@ -26,37 +26,26 @@ struct MapView: View {
     
     // MARK: - Methods (handler)
     
-    private func handleAddPin(at location: CLLocationCoordinate2D) {
-        locationStore.selectedLocation = location
-        isShowAddPinModal = true
-    }
-    
     private func handleAppear() {
         requestLocationPermissionIfNeeded()
     }
     
+    private func handleAddPin(at location: CGPoint, with proxy: MapProxy) {
+        if let coordinate = proxy.convert(location, from: .global) {
+            locationStore.selectedLocation = coordinate
+            isShowAddPinModal = true
+        }
+    }
+    
     // MARK: - Body
+    
     var body: some View {
         ZStack {
             MapReader { proxy in
-                Map(position: $position) {
-                    UserAnnotation()
-                    
-                    if let location = locationStore.currentLocation {
-                        MapCircle(center: location.coordinate, radius: 1000)
-                            .foregroundStyle(.blue.opacity(0.1))
-                            .stroke(.blue, lineWidth: 1)
-                    }
-                    
-                    ForEach(mapPinStore.pins) { pin in
-                        Marker(pin.title, coordinate: pin.coordinate)
-                    }
-                }
-                .gesture(LongPressGesture { location in
-                    if let coordinate = proxy.convert(location, from: .global) {
-                        handleAddPin(at: coordinate)
-                    }
-                })
+                mapView(proxy: proxy)
+                    .gesture(LongPressGesture { location in
+                        handleAddPin(at: location, with: proxy)
+                    })
             }
         }
         .sheet(isPresented: $isShowAddPinModal, content: {
@@ -64,6 +53,25 @@ struct MapView: View {
                 .presentationDetents([.medium])
         })
         .onAppear(perform: handleAppear)
+    }
+    
+    // MARK: View builders
+    
+    @ViewBuilder
+    private func mapView(proxy: MapProxy) -> some View {
+        Map(position: $position) {
+            UserAnnotation()
+            
+            if let location = locationStore.currentLocation {
+                MapCircle(center: location.coordinate, radius: 1000)
+                    .foregroundStyle(.blue.opacity(0.1))
+                    .stroke(.blue, lineWidth: 1)
+            }
+            
+            ForEach(mapPinStore.pins) { pin in
+                Marker(pin.title, coordinate: pin.coordinate)
+            }
+        }
     }
 }
 
