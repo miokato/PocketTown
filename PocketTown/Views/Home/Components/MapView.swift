@@ -71,6 +71,7 @@ struct MapView: View {
                 Marker(pin.title, coordinate: pin.coordinate)
             }
         }
+        .ignoresSafeArea(.keyboard)
         .mapControls {
             MapCompass()
                 .mapControlVisibility(.visible)
