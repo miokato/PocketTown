@@ -48,45 +48,8 @@ struct MapSheetView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("mapsheet.label.title", comment: "Title label for the map pin")
-                        .font(.headline)
-                    
-                    TextField("mapsheet.placeholder.title", text: $title, prompt: Text("mapsheet.placeholder.title", comment: "Placeholder for pin title"))
-                        .textFieldStyle(.roundedBorder)
-                        .focused($isTitleFieldFocused)
-                        .onSubmit {
-                            savePin()
-                        }
-                }
-                .padding(.horizontal)
-                .padding(.top, 20)
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("mapsheet.label.coordinates")
-                        .font(.headline)
-                    
-                    HStack {
-                        Label {
-                            Text("mapsheet.label.latitude") + Text(": \(coordinate.latitude, format: .number.precision(.fractionLength(6)))")
-                        } icon: {
-                            Image(systemName: "location")
-                        }
-                        .font(.caption)
-                        
-                        Spacer()
-                        
-                        Label {
-                            Text("mapsheet.label.longitude") + Text(": \(coordinate.longitude, format: .number.precision(.fractionLength(6)))")
-                        } icon: {
-                            Image(systemName: "location")
-                        }
-                        .font(.caption)
-                    }
-                    .foregroundColor(.secondary)
-                }
-                .padding(.horizontal)
-                
+                titleView
+                coordinateView
                 Spacer()
             }
             .navigationTitle("mapsheet.title")
@@ -97,7 +60,6 @@ struct MapSheetView: View {
                         dismiss()
                     }
                 }
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("mapsheet.button.save") {
                         savePin()
@@ -112,6 +74,52 @@ struct MapSheetView: View {
                 isTitleFieldFocused = true
             }
         }
+    }
+    
+    // MARK: - View builders
+    
+    @ViewBuilder
+    private var titleView: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("mapsheet.label.title")
+                .font(.headline)
+            
+            TextField("mapsheet.placeholder.title", text: $title, prompt: Text("mapsheet.placeholder.title"))
+                .textFieldStyle(.roundedBorder)
+                .focused($isTitleFieldFocused)
+                .onSubmit {
+                    savePin()
+                }
+        }
+        .padding(.horizontal)
+        .padding(.top, 20)
+    }
+    
+    @ViewBuilder
+    private var coordinateView: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("mapsheet.label.coordinates")
+                .font(.headline)
+            HStack {
+                Label {
+                    Text("mapsheet.label.latitude") + Text(": \(coordinate.latitude, format: .number.precision(.fractionLength(6)))")
+                } icon: {
+                    Image(systemName: "location")
+                }
+                .font(.caption)
+                
+                Spacer()
+                
+                Label {
+                    Text("mapsheet.label.longitude") + Text(": \(coordinate.longitude, format: .number.precision(.fractionLength(6)))")
+                } icon: {
+                    Image(systemName: "location")
+                }
+                .font(.caption)
+            }
+            .foregroundColor(.secondary)
+        }
+        .padding(.horizontal)
     }
 }
 
