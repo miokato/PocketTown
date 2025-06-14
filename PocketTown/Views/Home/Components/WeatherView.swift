@@ -22,7 +22,7 @@ struct WeatherView: View {
     
     // MARK: - Body
     var body: some View {
-        Group {
+        VStack {
             if weatherStore.isLoading {
                 loadingView
             } else if let weather = weatherStore.weather {
@@ -33,8 +33,9 @@ struct WeatherView: View {
                 emptyView
             }
         }
+        .frame(minHeight: 80)
         .padding()
-        .background(.regularMaterial)
+        .background(.thinMaterial)
     }
     
     // MARK: - View Builders

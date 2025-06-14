@@ -11,13 +11,18 @@ struct HomeView: View {
     @Environment(LocationStore.self) private var locationStore
     @Environment(WeatherStore.self) private var weatherStore
     
+    /// アプリ起動時に一度だけ天気を更新
+    @State private var isUpdatedWeather: Bool = false
+    
     private func handleOnAppear() {
         locationStore.startLocationUpdates()
     }
     
     private func handleChangeLocation() {
+        guard !isUpdatedWeather else { return }
         Task {
             await weatherStore.refreshWeather(by: locationStore.currentLocation)
+            isUpdatedWeather = true
         }
     }
     
