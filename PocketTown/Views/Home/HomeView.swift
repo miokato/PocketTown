@@ -22,13 +22,9 @@ struct HomeView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            DateTimeView()
-            WeatherView()
-            MapView()
-        }
-        .onAppear(perform: handleOnAppear)
-        .onChange(of: locationStore.currentLocation, handleChangeLocation)
+        MapView()
+            .onAppear(perform: handleOnAppear)
+            .onChange(of: locationStore.currentLocation, handleChangeLocation)
     }
 }
 

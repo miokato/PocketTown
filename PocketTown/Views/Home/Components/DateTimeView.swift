@@ -57,20 +57,16 @@ struct DateTimeView: View {
             Text(yearFormatter.string(from: currentDate))
                 .font(.caption)
                 .foregroundColor(.secondary)
-            
             // 月日
             Text(monthDayFormatter.string(from: currentDate))
                 .font(.title2)
                 .fontWeight(.medium)
-            
             // 曜日
             Text(weekdayFormatter.string(from: currentDate))
                 .font(.body)
                 .foregroundColor(.secondary)
-            
             Divider()
                 .padding(.horizontal)
-            
             // 時刻
             Text(timeFormatter.string(from: currentDate))
                 .font(.title)
@@ -81,6 +77,7 @@ struct DateTimeView: View {
         .onReceive(timer) { _ in
             currentDate = Date()
         }
+        .background(.regularMaterial)
     }
 }
 

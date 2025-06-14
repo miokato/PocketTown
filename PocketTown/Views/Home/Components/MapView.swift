@@ -82,6 +82,12 @@ struct MapView: View {
             MapUserLocationButton()
                 .mapControlVisibility(.visible)
         }
+        .safeAreaInset(edge: .top) {
+            VStack(spacing: 0) {
+                DateTimeView()
+                WeatherView()
+            }
+        }
     }
 }
 

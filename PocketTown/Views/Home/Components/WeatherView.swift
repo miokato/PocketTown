@@ -35,7 +35,6 @@ struct WeatherView: View {
         }
         .padding()
         .background(.regularMaterial)
-        .cornerRadius(16)
     }
     
     // MARK: - View Builders
