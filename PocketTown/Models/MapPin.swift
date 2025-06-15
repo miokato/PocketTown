@@ -9,11 +9,11 @@ import Foundation
 import CoreLocation
 
 struct MapPin: Identifiable, Codable, Sendable {
-    let id: UUID
-    let title: String
-    let timestamp: Date
-    let latitude: Double
-    let longitude: Double
+    var id: UUID
+    var title: String
+    var timestamp: Date
+    var latitude: Double
+    var longitude: Double
     
     init(
         id: UUID = UUID(),
