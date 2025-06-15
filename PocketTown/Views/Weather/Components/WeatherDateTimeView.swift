@@ -15,6 +15,7 @@ public struct WeatherDateTimeView: View {
             DateTimeView()
             WeatherContentView(weather: weather)
         }
+        .background(.thinMaterial)
     }
 }
 

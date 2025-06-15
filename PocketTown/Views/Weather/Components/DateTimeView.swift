@@ -77,7 +77,6 @@ struct DateTimeView: View {
         .onReceive(timer) { _ in
             currentDate = Date()
         }
-        .background(.thinMaterial)
     }
 }
 

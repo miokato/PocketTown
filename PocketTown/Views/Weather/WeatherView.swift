@@ -27,7 +27,6 @@ struct WeatherView: View {
         }
         .frame(minHeight: 80)
         .padding()
-        .background(.thinMaterial)
     }
     
     // MARK: - View Builders
