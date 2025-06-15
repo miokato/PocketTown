@@ -71,6 +71,12 @@
         }
       }
     },
+    "List" : {
+
+    },
+    "Map" : {
+
+    },
     "map.button.settings" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -306,6 +312,9 @@
       }
     },
     "OK" : {
+
+    },
+    "Setting" : {
 
     },
     "weather.button.retry" : {

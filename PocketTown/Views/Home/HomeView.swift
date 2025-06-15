@@ -38,23 +38,31 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            MapView()
-                .fullScreenCover(isPresented: $isShowOnboarding, content: {
-                    OnboardingView()
-                })
-                .onAppear(perform: handleOnAppear)
-                .onChange(of: locationStore.currentLocation, handleChangeLocation)
-                .navigationTitle("まちポケット")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            isShowOnboarding = true
-                        } label: {
-                            Image(systemName: "note")
-                        }
+            TabView {
+                Tab("Map", systemImage: "map") {
+                    MapView()
+                }
+                Tab("List", systemImage: "list.bullet") {
+                    Text("Setting")
+                }
+
+            }
+            .fullScreenCover(isPresented: $isShowOnboarding, content: {
+                OnboardingView()
+            })
+            .onAppear(perform: handleOnAppear)
+            .onChange(of: locationStore.currentLocation, handleChangeLocation)
+            .navigationTitle("まちポケット")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isShowOnboarding = true
+                    } label: {
+                        Image(systemName: "note")
                     }
                 }
+            }
         }
     }
 }
