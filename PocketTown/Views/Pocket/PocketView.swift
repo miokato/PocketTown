@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct PocketView: View {
-    @Environment(MapPinStore.self) private var store
+    @Query var mapPins: [MapPin]
+    
     var body: some View {
-        List(store.pins) { pin in
+        List(mapPins) { pin in
             Text("\(pin.title)")
         }
     }
@@ -18,5 +20,4 @@ struct PocketView: View {
 
 #Preview {
     PocketView()
-        .environment(MapPinStore())
 }

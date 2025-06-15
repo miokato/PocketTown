@@ -12,6 +12,7 @@ struct MapSheetView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(MapPinStore.self) private var mapPinStore
     @Environment(LocationStore.self) private var locationStore
+    @Environment(\.modelContext) private var modelContext
 
     @State private var title = ""
     @State private var showEmptyTitleAlert = false
@@ -39,7 +40,7 @@ struct MapSheetView: View {
             longitude: coordinate.longitude
         )
         
-        mapPinStore.addPin(pin)
+       mapPinStore.addPin(pin, withContext: modelContext)
         dismiss()
     }
     

@@ -7,8 +7,10 @@
 
 import Foundation
 import CoreLocation
+import SwiftData
 
-struct MapPin: Identifiable, Codable, Sendable {
+@Model
+final class MapPin: Identifiable {
     var id: UUID
     var title: String
     var timestamp: Date

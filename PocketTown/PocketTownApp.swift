@@ -14,5 +14,6 @@ struct PocketTownApp: App {
         WindowGroup {
             MainView()
         }
+        .modelContainer(for: MapPin.self)
     }
 }

@@ -7,22 +7,17 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
 @Observable
 final class MapPinStore {
-    // MARK: - Properties
-    var pins: [MapPin] = []
     
     // MARK: - Public Methods
-    func addPin(_ pin: MapPin) {
-        pins.append(pin)
+    func addPin(_ pin: MapPin, withContext context: ModelContext) {
+        context.insert(pin)
     }
     
-    func removePin(id: UUID) {
-        pins.removeAll { $0.id == id }
-    }
-    
-    func getPin(by id: UUID) -> MapPin? {
-        pins.first { $0.id == id }
+    func removePin(_ pin: MapPin, withContext context: ModelContext) {
+        context.delete(pin)
     }
 }

@@ -7,10 +7,11 @@
 
 import SwiftUI
 import MapKit
+import SwiftData
 
 struct MapView: View {
     @Environment(LocationStore.self) private var locationStore
-    @Environment(MapPinStore.self) private var mapPinStore
+    @Query var mapPins: [MapPin]
     
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
     @State private var selectedFeature: MapFeature?
@@ -68,7 +69,7 @@ struct MapView: View {
                     .stroke(.blue, lineWidth: 1)
             }
             
-            ForEach(mapPinStore.pins) { pin in
+            ForEach(mapPins) { pin in
                 Marker(pin.title, coordinate: pin.coordinate)
             }
         }
@@ -96,7 +97,6 @@ struct MapView: View {
 #Preview {
     MapView()
         .environment(LocationStore())
-        .environment(MapPinStore())
         .environment(WeatherStore())
 }
 
