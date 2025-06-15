@@ -65,7 +65,7 @@ struct MapView: View {
             
             if let location = locationStore.currentLocation {
                 MapCircle(center: location.coordinate, radius: 1000)
-                    .foregroundStyle(.blue.opacity(0.1))
+                    .foregroundStyle(.black.opacity(0.05))
                     .stroke(.blue, lineWidth: 1)
             }
             
