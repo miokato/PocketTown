@@ -13,11 +13,21 @@ struct HomeView: View {
     
     /// アプリ起動時に一度だけ天気を更新
     @State private var isUpdatedWeather: Bool = false
+    @State private var isShowOnboarding: Bool = false
+    
+    private func showOnboardingWithNoAnimation() {
+        var transaction = Transaction()
+        transaction.disablesAnimations = true
+        withTransaction(transaction) {
+            isShowOnboarding = true
+        }
+    }
     
     private func handleOnAppear() {
         locationStore.startLocationUpdates()
+        showOnboardingWithNoAnimation()
     }
-    
+
     private func handleChangeLocation() {
         guard !isUpdatedWeather else { return }
         Task {
@@ -28,6 +38,9 @@ struct HomeView: View {
     
     var body: some View {
         MapView()
+            .fullScreenCover(isPresented: $isShowOnboarding, content: {
+                OnboardingView()
+            })
             .onAppear(perform: handleOnAppear)
             .onChange(of: locationStore.currentLocation, handleChangeLocation)
     }
