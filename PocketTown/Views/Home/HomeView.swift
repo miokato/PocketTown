@@ -37,18 +37,33 @@ struct HomeView: View {
     }
     
     var body: some View {
-        MapView()
-            .fullScreenCover(isPresented: $isShowOnboarding, content: {
-                OnboardingView()
-            })
-            .onAppear(perform: handleOnAppear)
-            .onChange(of: locationStore.currentLocation, handleChangeLocation)
+        NavigationStack {
+            MapView()
+                .fullScreenCover(isPresented: $isShowOnboarding, content: {
+                    OnboardingView()
+                })
+                .onAppear(perform: handleOnAppear)
+                .onChange(of: locationStore.currentLocation, handleChangeLocation)
+                .navigationTitle("まちポケット")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isShowOnboarding = true
+                        } label: {
+                            Image(systemName: "note")
+                        }
+                    }
+                }
+        }
     }
 }
 
 #Preview {
-    HomeView()
-        .environment(LocationStore())
-        .environment(WeatherStore())
-        .environment(MapPinStore())
+    NavigationStack {
+        HomeView()
+            .environment(LocationStore())
+            .environment(WeatherStore())
+            .environment(MapPinStore())
+    }
 }
