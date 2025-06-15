@@ -24,7 +24,7 @@ struct DateTimeView: View {
     private var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .none
-        formatter.timeStyle = .medium
+        formatter.timeStyle = .short
         formatter.locale = Locale.current
         return formatter
     }
@@ -73,7 +73,7 @@ struct DateTimeView: View {
                 .fontWeight(.semibold)
                 .monospacedDigit()
         }
-        .padding()
+        .padding(.vertical)
         .onReceive(timer) { _ in
             currentDate = Date()
         }
