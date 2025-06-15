@@ -13,6 +13,7 @@ struct MapView: View {
     @Environment(MapPinStore.self) private var mapPinStore
     
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+    @State private var selectedFeature: MapFeature?
     @State private var isShowAddPinModal = false
     
     // MARK: - Private Methods
@@ -58,7 +59,7 @@ struct MapView: View {
     
     @ViewBuilder
     private func mapView(proxy: MapProxy) -> some View {
-        Map(position: $position) {
+        Map(position: $position, selection: $selectedFeature) {
             UserAnnotation()
             
             if let location = locationStore.currentLocation {
@@ -82,6 +83,8 @@ struct MapView: View {
             MapUserLocationButton()
                 .mapControlVisibility(.visible)
         }
+        .mapFeatureSelectionContent(content: { _ in
+        })
         .safeAreaInset(edge: .top) {
             VStack(spacing: 0) {
                 WeatherView()
