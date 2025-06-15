@@ -19,9 +19,22 @@
 		95CE20952DFCE85000301962 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AED2884B2DFECCFD0024BBA0 /* Exceptions for "PocketTown" folder in "PocketTown" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 95CE206A2DFCE5EB00301962 /* PocketTown */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		95CE206D2DFCE5EB00301962 /* PocketTown */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AED2884B2DFECCFD0024BBA0 /* Exceptions for "PocketTown" folder in "PocketTown" target */,
+			);
 			path = PocketTown;
 			sourceTree = "<group>";
 		};
@@ -277,6 +290,8 @@
 				DEVELOPMENT_TEAM = 6G9A5395V2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PocketTown/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "地図で現在位置を表示するために利用します";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "地図で現在位置を表示するために利用します";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "地図で現在位置を表示するために利用します";
@@ -309,6 +324,8 @@
 				DEVELOPMENT_TEAM = 6G9A5395V2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PocketTown/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "地図で現在位置を表示するために利用します";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "地図で現在位置を表示するために利用します";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "地図で現在位置を表示するために利用します";
