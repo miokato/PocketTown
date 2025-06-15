@@ -42,8 +42,8 @@ struct HomeView: View {
                 Tab("Map", systemImage: "map") {
                     MapView()
                 }
-                Tab("List", systemImage: "list.bullet") {
-                    Text("Setting")
+                Tab("Pocket", systemImage: "list.bullet") {
+                    PocketView()
                 }
 
             }
