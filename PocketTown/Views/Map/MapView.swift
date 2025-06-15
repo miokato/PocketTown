@@ -84,7 +84,6 @@ struct MapView: View {
         }
         .safeAreaInset(edge: .top) {
             VStack(spacing: 0) {
-                DateTimeView()
                 WeatherView()
             }
         }
@@ -95,5 +94,6 @@ struct MapView: View {
     MapView()
         .environment(LocationStore())
         .environment(MapPinStore())
+        .environment(WeatherStore())
 }
 

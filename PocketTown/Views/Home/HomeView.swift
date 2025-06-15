@@ -37,4 +37,5 @@ struct HomeView: View {
     HomeView()
         .environment(LocationStore())
         .environment(WeatherStore())
+        .environment(MapPinStore())
 }

@@ -10,6 +10,24 @@ struct Weather: Sendable, Codable {
     let symbolName: String
     let description: String
     
+    init(
+        condition: WeatherCondition,
+        temprature: Measurement<UnitTemperature>,
+        temperatureMax: Measurement<UnitTemperature>,
+        temperatureMin: Measurement<UnitTemperature>,
+        humidity: Double,
+        symbolName: String,
+        description: String
+    ) {
+        self.condition = condition
+        self.temperature = temprature
+        self.temperatureMax = temperatureMax
+        self.temperatureMin = temperatureMin
+        self.humidity = humidity
+        self.symbolName = symbolName
+        self.description = description
+    }
+    
     init(from current: CurrentWeather, dailyForecast: DayWeather? = nil) {
         self.condition = current.condition
         self.temperature = current.temperature
@@ -24,6 +42,18 @@ struct Weather: Sendable, Codable {
             self.temperatureMax = current.temperature
             self.temperatureMin = current.temperature
         }
+    }
+}
+
+extension Weather {
+    static var sample: Weather {
+        .init(condition: .sunShowers,
+              temprature: .init(value: 30.0, unit: .celsius),
+              temperatureMax: .init(value: 40.0, unit: .celsius),
+              temperatureMin: .init(value: 10.0, unit: .celsius),
+              humidity: 0.5,
+              symbolName: "cloud",
+              description: String(localized: "weather.condition.cloudy"))
     }
 }
 
