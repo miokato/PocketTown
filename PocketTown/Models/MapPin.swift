@@ -11,11 +11,11 @@ import SwiftData
 
 @Model
 final class MapPin: Identifiable {
-    var id: UUID
-    var title: String
-    var timestamp: Date
-    var latitude: Double
-    var longitude: Double
+    var id: UUID = UUID()
+    var title: String = ""
+    var timestamp: Date = Date()
+    var latitude: Double = 0
+    var longitude: Double = 0
     
     init(
         id: UUID = UUID(),
