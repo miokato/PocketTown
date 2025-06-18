@@ -44,13 +44,13 @@ struct MapSheetView: View {
             longitude: coordinate.longitude
         )
         
-       mapPinStore.addPin(pin, withContext: modelContext)
+        mapPinStore.addPin(pin, withContext: modelContext)
         dismiss()
     }
     
     private func deletePin() {
         guard let selectedPin = selectedPin else { return }
-        modelContext.delete(selectedPin)
+        mapPinStore.removePin(selectedPin, withContext: modelContext)
         dismiss()
     }
     
@@ -97,7 +97,7 @@ struct MapSheetView: View {
                 isTitleFieldFocused = true
             }
         }
-        .alert("delete", isPresented: $isShowDeleteAlert) {
+        .alert("削除しますか", isPresented: $isShowDeleteAlert) {
             HStack {
                 Button("キャンセル", role: .cancel) {
                     isShowDeleteAlert = false
