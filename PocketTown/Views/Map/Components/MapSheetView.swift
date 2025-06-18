@@ -44,6 +44,7 @@ struct MapSheetView: View {
         if let selectedPin = selectedPin {
             editPin(selectedPin, withTitle: validTitle)
         } else {
+            guard let coordinate = locationStore.selectedLocation else { return }
             addPinWithTitle(validTitle, coordiante: coordinate)
         }
         dismiss()
@@ -54,7 +55,6 @@ struct MapSheetView: View {
     }
     
     private func addPinWithTitle(_ title: String, coordiante: CLLocationCoordinate2D) {
-        guard let coordinate = locationStore.selectedLocation else { return }
         let pin = MapPin(
             title: title,
             description: "",
@@ -67,12 +67,10 @@ struct MapSheetView: View {
     private func deletePin() {
         guard let selectedPin = selectedPin else { return }
         mapPinStore.removePin(selectedPin, withContext: modelContext)
-        dismiss()
     }
     
     private func updatePin() {
         guard let selectedPin = selectedPin else { return }
-        
         title = selectedPin.title
     }
     
@@ -120,6 +118,7 @@ struct MapSheetView: View {
                 }
                 Button("削除", role: .destructive) {
                     deletePin()
+                    dismiss()
                 }
             }
         }
