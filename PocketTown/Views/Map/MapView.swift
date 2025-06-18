@@ -25,10 +25,10 @@ struct MapView: View {
         }
     }
     
-    private func zoomInCameraToSelectedPin(_ pin: MapPin) {
+    private func zoomInCameraToCoordinate(_ coordinate: CLLocationCoordinate2D) {
         withAnimation(.easeInOut) {
             position = .camera(.init(
-                centerCoordinate: pin.coordinate,
+                centerCoordinate: coordinate,
                 distance: 1500)
             )
         }
@@ -43,6 +43,7 @@ struct MapView: View {
     private func handleAddPin(at location: CGPoint, with proxy: MapProxy) {
         selectedPin = nil
         if let coordinate = proxy.convert(location, from: .global) {
+            zoomInCameraToCoordinate(coordinate)
             locationStore.selectedLocation = coordinate
             isShowAddPinModal = true
         }
@@ -50,7 +51,7 @@ struct MapView: View {
     
     private func handleTapSelectedPin() {
         guard let selectedPin = selectedPin else { return }
-        zoomInCameraToSelectedPin(selectedPin)
+        zoomInCameraToCoordinate(selectedPin.coordinate)
         isShowAddPinModal = true
     }
     
