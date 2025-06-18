@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 import MapKit
 
 struct MapSheetView: View {
+    let selectedPin: MapPin?
+    
     @Environment(\.dismiss) private var dismiss
     @Environment(MapPinStore.self) private var mapPinStore
     @Environment(LocationStore.self) private var locationStore
@@ -44,6 +47,16 @@ struct MapSheetView: View {
         dismiss()
     }
     
+    private func updatePin() {
+        guard let selectedPin = selectedPin else { return }
+        
+        title = selectedPin.title
+    }
+    
+    private func handleAppear() {
+        updatePin()
+    }
+    
     // MARK: - Body
     
     var body: some View {
@@ -53,6 +66,7 @@ struct MapSheetView: View {
                 coordinateView
                 Spacer()
             }
+            .onAppear(perform: handleAppear)
             .navigationTitle("mapsheet.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -125,7 +139,7 @@ struct MapSheetView: View {
 }
 
 #Preview {
-    MapSheetView()
+    MapSheetView(selectedPin: nil)
         .environment(MapPinStore())
         .environment(LocationStore())
 }

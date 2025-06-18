@@ -54,7 +54,7 @@ struct MapView: View {
             }
         }
         .sheet(isPresented: $isShowAddPinModal, content: {
-            MapSheetView()
+            MapSheetView(selectedPin: selectedPin)
                 .presentationDetents([.medium])
         })
         .onAppear(perform: handleAppear)
