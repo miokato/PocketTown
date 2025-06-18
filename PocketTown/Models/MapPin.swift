@@ -11,7 +11,7 @@ import SwiftData
 import CloudKit
 
 @Model
-final class MapPin: Identifiable, @unchecked Sendable {
+final class MapPin: Identifiable {
     var id: UUID = UUID()
     var title: String = ""
     var timestamp: Date = Date()

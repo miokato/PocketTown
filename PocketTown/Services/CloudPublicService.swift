@@ -7,7 +7,8 @@
 
 import CloudKit
 
-actor CloudPublicService {
+@MainActor
+final class CloudPublicService {
     private let db = CKContainer(identifier: "iCloud.co.utomica.PocketTown")
                   .publicCloudDatabase
 
