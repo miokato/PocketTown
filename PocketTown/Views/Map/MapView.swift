@@ -14,7 +14,7 @@ struct MapView: View {
     @Query var mapPins: [MapPin]
     
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
-    @State private var selectedFeature: MapFeature?
+    @State private var selectedPin: MapPin?
     @State private var isShowAddPinModal = false
     
     // MARK: - Private Methods
@@ -38,6 +38,10 @@ struct MapView: View {
         }
     }
     
+    private func handleTapSelectedPin() {
+        isShowAddPinModal = true
+    }
+    
     // MARK: - Body
     
     var body: some View {
@@ -54,13 +58,14 @@ struct MapView: View {
                 .presentationDetents([.medium])
         })
         .onAppear(perform: handleAppear)
+        .onChange(of: selectedPin, handleTapSelectedPin)
     }
     
     // MARK: View builders
     
     @ViewBuilder
     private func mapView(proxy: MapProxy) -> some View {
-        Map(position: $position, selection: $selectedFeature) {
+        Map(position: $position, selection: $selectedPin) {
             UserAnnotation()
             
             if let location = locationStore.currentLocation {
@@ -71,6 +76,7 @@ struct MapView: View {
             
             ForEach(mapPins) { pin in
                 Marker(pin.title, coordinate: pin.coordinate)
+                    .tag(pin)
             }
         }
         .ignoresSafeArea(.keyboard)
