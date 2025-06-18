@@ -10,6 +10,9 @@
     "%lld%%" : {
 
     },
+    "delete" : {
+
+    },
     "error.location.permission" : {
       "localizations" : {
         "en" : {
@@ -927,7 +930,6 @@
       }
     },
     "キャンセル" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1002,6 +1004,9 @@
           }
         }
       }
+    },
+    "削除" : {
+
     },
     "場所の名前を入力" : {
       "extractionState" : "stale",

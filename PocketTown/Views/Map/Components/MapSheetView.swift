@@ -19,6 +19,7 @@ struct MapSheetView: View {
 
     @State private var title = ""
     @State private var showEmptyTitleAlert = false
+    @State private var isShowDeleteAlert = false
     @FocusState private var isTitleFieldFocused: Bool
     
     private var coordinate: CLLocationCoordinate2D {
@@ -47,10 +48,20 @@ struct MapSheetView: View {
         dismiss()
     }
     
+    private func deletePin() {
+        guard let selectedPin = selectedPin else { return }
+        modelContext.delete(selectedPin)
+        dismiss()
+    }
+    
     private func updatePin() {
         guard let selectedPin = selectedPin else { return }
         
         title = selectedPin.title
+    }
+    
+    private func showDeleteAlert() {
+        isShowDeleteAlert = true
     }
     
     private func handleAppear() {
@@ -61,9 +72,10 @@ struct MapSheetView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 12) {
+            VStack(spacing: 20) {
                 titleView
                 coordinateView
+                saveButton
                 Spacer()
             }
             .onAppear(perform: handleAppear)
@@ -75,17 +87,24 @@ struct MapSheetView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("mapsheet.button.save") {
-                        savePin()
-                    }
-                    .fontWeight(.semibold)
-                    .disabled(title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    Button("削除", role: .destructive, action: showDeleteAlert)
+                        .foregroundStyle(Color.red)
                 }
             }
         }
         .alert("mapsheet.alert.title", isPresented: $showEmptyTitleAlert) {
             Button("OK") {
                 isTitleFieldFocused = true
+            }
+        }
+        .alert("delete", isPresented: $isShowDeleteAlert) {
+            HStack {
+                Button("キャンセル", role: .cancel) {
+                    isShowDeleteAlert = false
+                }
+                Button("削除", role: .destructive) {
+                    deletePin()
+                }
             }
         }
     }
@@ -97,7 +116,6 @@ struct MapSheetView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("mapsheet.label.title")
                 .font(.headline)
-            
             TextField(
                 "mapsheet.placeholder.title",
                 text: $title,
@@ -126,6 +144,13 @@ struct MapSheetView: View {
             .foregroundColor(.secondary)
         }
         .padding(.horizontal)
+    }
+    
+    @ViewBuilder
+    private var saveButton: some View {
+        Button("mapsheet.button.save", action: savePin)
+            .fontWeight(.semibold)
+            .disabled(title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
     }
 }
 
