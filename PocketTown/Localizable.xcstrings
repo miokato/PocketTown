@@ -10,9 +10,6 @@
     "%lld%%" : {
 
     },
-    "delete" : {
-
-    },
     "error.location.permission" : {
       "localizations" : {
         "en" : {
@@ -1006,6 +1003,9 @@
       }
     },
     "削除" : {
+
+    },
+    "削除しますか" : {
 
     },
     "場所の名前を入力" : {

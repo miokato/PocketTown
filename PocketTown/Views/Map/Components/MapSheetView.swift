@@ -28,24 +28,40 @@ struct MapSheetView: View {
     
     // MARK: - Private Methods
     
-    private func savePin() {
+    private func validateText(_ text: String) -> String? {
         let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard !trimmedTitle.isEmpty else {
             showEmptyTitleAlert = true
-            return
+            return nil
         }
-        guard let coordinate = locationStore.selectedLocation else { return }
+        return trimmedTitle
+    }
+    
+    private func savePin() {
+        guard let validTitle = validateText(title) else { return }
         
+        if let selectedPin = selectedPin {
+            editPin(selectedPin, withTitle: validTitle)
+        } else {
+            addPinWithTitle(validTitle, coordiante: coordinate)
+        }
+        dismiss()
+    }
+    
+    private func editPin(_ pin: MapPin, withTitle title: String) {
+        pin.title = title
+    }
+    
+    private func addPinWithTitle(_ title: String, coordiante: CLLocationCoordinate2D) {
+        guard let coordinate = locationStore.selectedLocation else { return }
         let pin = MapPin(
-            title: trimmedTitle,
+            title: title,
             description: "",
             latitude: coordinate.latitude,
             longitude: coordinate.longitude
         )
-        
         mapPinStore.addPin(pin, withContext: modelContext)
-        dismiss()
     }
     
     private func deletePin() {

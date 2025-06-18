@@ -91,7 +91,6 @@ struct MapView: View {
                     .tag(pin)
             }
         }
-        .ignoresSafeArea(.keyboard)
         .mapControls {
             MapCompass()
                 .mapControlVisibility(.visible)
@@ -109,6 +108,7 @@ struct MapView: View {
                 WeatherView()
             }
         }
+        .ignoresSafeArea(.keyboard)
     }
 }
 
