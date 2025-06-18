@@ -54,6 +54,13 @@ struct MapView: View {
         isShowAddPinModal = true
     }
     
+    private func handleIsShowAddPinModal() {
+        guard !isShowAddPinModal else { return }
+        withAnimation {
+            selectedPin = nil
+        }
+    }
+    
     // MARK: - Body
     
     var body: some View {
@@ -71,6 +78,7 @@ struct MapView: View {
         })
         .onAppear(perform: handleAppear)
         .onChange(of: selectedPin, handleTapSelectedPin)
+        .onChange(of: isShowAddPinModal, handleIsShowAddPinModal)
     }
     
     // MARK: View builders
