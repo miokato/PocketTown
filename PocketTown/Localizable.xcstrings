@@ -296,6 +296,7 @@
       }
     },
     "mapsheet.title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

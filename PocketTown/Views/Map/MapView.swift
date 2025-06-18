@@ -32,6 +32,7 @@ struct MapView: View {
     }
     
     private func handleAddPin(at location: CGPoint, with proxy: MapProxy) {
+        selectedPin = nil
         if let coordinate = proxy.convert(location, from: .global) {
             locationStore.selectedLocation = coordinate
             isShowAddPinModal = true

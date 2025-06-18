@@ -61,13 +61,12 @@ struct MapSheetView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
+            VStack(spacing: 12) {
                 titleView
                 coordinateView
                 Spacer()
             }
             .onAppear(perform: handleAppear)
-            .navigationTitle("mapsheet.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -99,12 +98,14 @@ struct MapSheetView: View {
             Text("mapsheet.label.title")
                 .font(.headline)
             
-            TextField("mapsheet.placeholder.title", text: $title, prompt: Text("mapsheet.placeholder.title"))
-                .textFieldStyle(.roundedBorder)
-                .focused($isTitleFieldFocused)
-                .onSubmit {
-                    savePin()
-                }
+            TextField(
+                "mapsheet.placeholder.title",
+                text: $title,
+                prompt: Text("mapsheet.placeholder.title")
+            )
+            .textFieldStyle(.roundedBorder)
+            .focused($isTitleFieldFocused)
+            .onSubmit(savePin)
         }
         .padding(.horizontal)
         .padding(.top, 20)
@@ -116,22 +117,12 @@ struct MapSheetView: View {
             Text("mapsheet.label.coordinates")
                 .font(.headline)
             HStack {
-                Label {
-                    Text("mapsheet.label.latitude") + Text(": \(coordinate.latitude, format: .number.precision(.fractionLength(6)))")
-                } icon: {
-                    Image(systemName: "location")
-                }
-                .font(.caption)
-                
+                Image(systemName: "location")
+                Text("mapsheet.label.latitude") + Text(": \(coordinate.latitude, format: .number.precision(.fractionLength(6)))")
+                Text("mapsheet.label.longitude") + Text(": \(coordinate.longitude, format: .number.precision(.fractionLength(6)))")
                 Spacer()
-                
-                Label {
-                    Text("mapsheet.label.longitude") + Text(": \(coordinate.longitude, format: .number.precision(.fractionLength(6)))")
-                } icon: {
-                    Image(systemName: "location")
-                }
-                .font(.caption)
             }
+            .font(.caption)
             .foregroundColor(.secondary)
         }
         .padding(.horizontal)
