@@ -25,6 +25,15 @@ struct MapView: View {
         }
     }
     
+    private func zoomInCameraToSelectedPin(_ pin: MapPin) {
+        withAnimation(.easeInOut) {
+            position = .camera(.init(
+                centerCoordinate: pin.coordinate,
+                distance: 1500)
+            )
+        }
+    }
+    
     // MARK: - Methods (handler)
     
     private func handleAppear() {
@@ -40,6 +49,8 @@ struct MapView: View {
     }
     
     private func handleTapSelectedPin() {
+        guard let selectedPin = selectedPin else { return }
+        zoomInCameraToSelectedPin(selectedPin)
         isShowAddPinModal = true
     }
     
@@ -93,7 +104,7 @@ struct MapView: View {
         }
         .mapFeatureSelectionContent(content: { _ in
         })
-        .safeAreaInset(edge: .top) {
+        .safeAreaInset(edge: .bottom) {
             VStack(spacing: 0) {
                 WeatherView()
             }
