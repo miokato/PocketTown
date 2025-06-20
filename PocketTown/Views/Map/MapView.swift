@@ -15,6 +15,7 @@ struct MapView: View {
     
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
     @State private var selectedPin: MapPin?
+    @State private var selection: MapSelection<MapPlace>?
     @State private var isShowAddPinModal = false
     
     // MARK: - Private Methods
@@ -49,10 +50,16 @@ struct MapView: View {
         }
     }
     
-    private func handleTapSelectedPin() {
-        guard let selectedPin = selectedPin else { return }
-        zoomInCameraToCoordinate(selectedPin.coordinate)
-        isShowAddPinModal = true
+    private func handleTapSelection() {
+        guard let mapPlace = selection?.value else { return }
+        switch mapPlace {
+        case .pin(let pin):
+            selectedPin = pin
+            zoomInCameraToCoordinate(pin.coordinate)
+            isShowAddPinModal = true
+        case .poi(let item):
+            break
+        }
     }
     
     private func handleIsShowAddPinModal() {
@@ -78,7 +85,7 @@ struct MapView: View {
                 .presentationDetents([.medium])
         })
         .onAppear(perform: handleAppear)
-        .onChange(of: selectedPin, handleTapSelectedPin)
+        .onChange(of: selection, handleTapSelection)
         .onChange(of: isShowAddPinModal, handleIsShowAddPinModal)
     }
     
@@ -86,7 +93,7 @@ struct MapView: View {
     
     @ViewBuilder
     private func mapView(proxy: MapProxy) -> some View {
-        Map(position: $position, selection: $selectedPin) {
+        Map(position: $position, selection: $selection) {
             UserAnnotation()
             
             if let location = locationStore.currentLocation {
@@ -97,7 +104,7 @@ struct MapView: View {
             
             ForEach(mapPins) { pin in
                 Marker(pin.title, coordinate: pin.coordinate)
-                    .tag(pin)
+                    .tag(MapSelection(MapPlace.pin(pin)))
             }
         }
         .mapControls {
@@ -117,6 +124,7 @@ struct MapView: View {
                 WeatherView()
             }
         }
+        .mapFeatureSelectionAccessory(.callout)
         .ignoresSafeArea(.keyboard)
     }
 }
