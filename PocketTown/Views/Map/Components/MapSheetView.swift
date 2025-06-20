@@ -67,6 +67,7 @@ struct MapSheetView: View {
         guard let selectedPin = selectedPin else { return }
         title = selectedPin.title
         note = selectedPin.note
+        locationStore.selectedLocation = selectedPin.coordinate
     }
     
     private func showDeleteAlert() {
