@@ -81,11 +81,13 @@ struct MapSheetView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                editView
-                coordinateView
+            VStack {
+                Form {
+                    editView
+                    coordinateView
+                }
                 saveButton
-                Spacer()
+                    .buttonStyle(.borderedProminent)
             }
             .onAppear(perform: handleAppear)
             .navigationBarTitleDisplayMode(.inline)
@@ -123,12 +125,8 @@ struct MapSheetView: View {
     
     @ViewBuilder
     private var editView: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            titleTextField
-            noteTextField
-        }
-        .padding(.horizontal)
-        .padding(.top, 20)
+        titleTextField
+        noteTextField
     }
     
     @ViewBuilder
@@ -150,8 +148,7 @@ struct MapSheetView: View {
     @ViewBuilder
     private var noteTextField: some View {
         VStack(alignment: .leading) {
-            Text("ノート")
-                .font(.body)
+            Text("説明")
             TextField(
                 "場所の説明を入力",
                 text: $note,
@@ -164,19 +161,17 @@ struct MapSheetView: View {
     
     @ViewBuilder
     private var coordinateView: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading) {
             Text("mapsheet.label.coordinates")
                 .font(.headline)
             HStack {
                 Image(systemName: "location")
                 Text("mapsheet.label.latitude") + Text(": \(coordinate.latitude, format: .number.precision(.fractionLength(6)))")
                 Text("mapsheet.label.longitude") + Text(": \(coordinate.longitude, format: .number.precision(.fractionLength(6)))")
-                Spacer()
             }
-            .font(.caption)
-            .foregroundColor(.secondary)
         }
-        .padding(.horizontal)
+        .font(.caption)
+        .foregroundColor(.primary)
     }
     
     @ViewBuilder
