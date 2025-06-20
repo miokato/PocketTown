@@ -17,8 +17,6 @@ final class MapPinStore {
     func addPin(_ pin: MapPin, withContext context: ModelContext) {
         Task {
             context.insert(pin)
-            // とりあえずPublicにもデフォルトで保存する
-            await togglePublic(pin: pin, makePublic: true)
             try? context.save()
         }
     }

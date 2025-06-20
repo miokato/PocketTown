@@ -21,6 +21,7 @@ struct MapSheetView: View {
     @State private var note = ""
     @State private var showEmptyTitleAlert = false
     @State private var isShowDeleteAlert = false
+    @State private var togglePublication = false
     @FocusState private var isTitleFieldFocused: Bool
     
     private var enableTitleEdit: Bool {
@@ -78,6 +79,14 @@ struct MapSheetView: View {
         updateTextField()
     }
     
+    private func handleTogglePublication() {
+        guard let pin = selectedPin else { return }
+        Task {
+            await mapPinStore.togglePublic(pin: pin, makePublic: togglePublication)
+            log("\(togglePublication)", with: .debug)
+        }
+    }
+    
     // MARK: - Body
     
     var body: some View {
@@ -128,6 +137,20 @@ struct MapSheetView: View {
     private var editView: some View {
         titleTextField
         noteTextField
+        publicationToggle
+    }
+    
+    @ViewBuilder
+    private var publicationToggle: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Toggle("公開する", isOn: $togglePublication)
+            }
+            Text("公開すると同じアプリを利用しているすべてのユーザーが閲覧できます。")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .onChange(of: togglePublication, handleTogglePublication)
     }
     
     @ViewBuilder
