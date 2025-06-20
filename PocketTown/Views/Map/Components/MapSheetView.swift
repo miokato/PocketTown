@@ -35,7 +35,7 @@ struct MapSheetView: View {
     
     private func savePin() {
         if let selectedPin = selectedPin {
-            editPin(selectedPin, note: note)
+            updatePin(selectedPin, note: note)
         } else {
             guard let coordinate = locationStore.selectedLocation else { return }
             addPinWithTitle(title, note: note, coordiante: coordinate)
@@ -43,7 +43,7 @@ struct MapSheetView: View {
         dismiss()
     }
     
-    private func editPin(_ pin: MapPin, note: String) {
+    private func updatePin(_ pin: MapPin, note: String) {
         pin.note = note
     }
     
@@ -63,7 +63,7 @@ struct MapSheetView: View {
     }
     
     /// 保存済みのピンが選択されたとき表示を更新
-    private func updatePin() {
+    private func updateTextField() {
         guard let selectedPin = selectedPin else { return }
         title = selectedPin.title
         note = selectedPin.note
@@ -74,7 +74,7 @@ struct MapSheetView: View {
     }
     
     private func handleAppear() {
-        updatePin()
+        updateTextField()
     }
     
     // MARK: - Body
