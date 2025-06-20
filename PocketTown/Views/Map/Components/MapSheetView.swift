@@ -18,9 +18,14 @@ struct MapSheetView: View {
     @Environment(\.modelContext) private var modelContext
 
     @State private var title = ""
+    @State private var note = ""
     @State private var showEmptyTitleAlert = false
     @State private var isShowDeleteAlert = false
     @FocusState private var isTitleFieldFocused: Bool
+    
+    private var enableTitleEdit: Bool {
+        selectedPin == nil
+    }
     
     private var coordinate: CLLocationCoordinate2D {
         locationStore.selectedLocation ?? .init(latitude: 0, longitude: 0)
@@ -28,36 +33,24 @@ struct MapSheetView: View {
     
     // MARK: - Private Methods
     
-    private func validateText(_ text: String) -> String? {
-        let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        guard !trimmedTitle.isEmpty else {
-            showEmptyTitleAlert = true
-            return nil
-        }
-        return trimmedTitle
-    }
-    
     private func savePin() {
-        guard let validTitle = validateText(title) else { return }
-        
         if let selectedPin = selectedPin {
-            editPin(selectedPin, withTitle: validTitle)
+            editPin(selectedPin, note: note)
         } else {
             guard let coordinate = locationStore.selectedLocation else { return }
-            addPinWithTitle(validTitle, coordiante: coordinate)
+            addPinWithTitle(title, note: note, coordiante: coordinate)
         }
         dismiss()
     }
     
-    private func editPin(_ pin: MapPin, withTitle title: String) {
-        pin.title = title
+    private func editPin(_ pin: MapPin, note: String) {
+        pin.note = note
     }
     
-    private func addPinWithTitle(_ title: String, coordiante: CLLocationCoordinate2D) {
+    private func addPinWithTitle(_ title: String, note: String, coordiante: CLLocationCoordinate2D) {
         let pin = MapPin(
             title: title,
-            description: "",
+            note: note,
             latitude: coordinate.latitude,
             longitude: coordinate.longitude
         )
@@ -69,9 +62,11 @@ struct MapSheetView: View {
         mapPinStore.removePin(selectedPin, withContext: modelContext)
     }
     
+    /// 保存済みのピンが選択されたとき表示を更新
     private func updatePin() {
         guard let selectedPin = selectedPin else { return }
         title = selectedPin.title
+        note = selectedPin.note
     }
     
     private func showDeleteAlert() {
@@ -87,7 +82,7 @@ struct MapSheetView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                titleView
+                editView
                 coordinateView
                 saveButton
                 Spacer()
@@ -127,8 +122,18 @@ struct MapSheetView: View {
     // MARK: - View builders
     
     @ViewBuilder
-    private var titleView: some View {
+    private var editView: some View {
         VStack(alignment: .leading, spacing: 8) {
+            titleTextField
+            noteTextField
+        }
+        .padding(.horizontal)
+        .padding(.top, 20)
+    }
+    
+    @ViewBuilder
+    private var titleTextField: some View {
+        VStack(alignment: .leading) {
             Text("mapsheet.label.title")
                 .font(.headline)
             TextField(
@@ -138,10 +143,23 @@ struct MapSheetView: View {
             )
             .textFieldStyle(.roundedBorder)
             .focused($isTitleFieldFocused)
-            .onSubmit(savePin)
+            .disabled(!enableTitleEdit)
         }
-        .padding(.horizontal)
-        .padding(.top, 20)
+    }
+    
+    @ViewBuilder
+    private var noteTextField: some View {
+        VStack(alignment: .leading) {
+            Text("ノート")
+                .font(.body)
+            TextField(
+                "場所の説明を入力",
+                text: $note,
+                prompt: Text("場所の説明を入力")
+            )
+            .textFieldStyle(.roundedBorder)
+            .focused($isTitleFieldFocused)
+        }
     }
     
     @ViewBuilder

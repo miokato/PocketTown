@@ -14,6 +14,7 @@ import CloudKit
 final class MapPin: Identifiable {
     var id: UUID = UUID()
     var title: String = ""
+    var note: String = ""
     var timestamp: Date = Date()
     var latitude: Double = 0
     var longitude: Double = 0
@@ -22,13 +23,14 @@ final class MapPin: Identifiable {
     init(
         id: UUID = UUID(),
         title: String,
-        description: String,
+        note: String,
         timestamp: Date = Date(),
         latitude: Double,
         longitude: Double
     ) {
         self.id = id
         self.title = title
+        self.note = note
         self.timestamp = timestamp
         self.latitude = latitude
         self.longitude = longitude
@@ -44,7 +46,7 @@ final class MapPin: Identifiable {
 extension MapPin {
     
     static func makeSample(_ coordinate: CLLocationCoordinate2D) -> MapPin {
-        return MapPin(title: "", description: "", latitude: coordinate.latitude, longitude: coordinate.longitude)
+        return MapPin(title: "", note: "", latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
     /// Privacy-friendly 10 m グリッドに丸める
     private var roundedCoord: CLLocation {
