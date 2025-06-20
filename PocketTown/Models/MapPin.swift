@@ -42,6 +42,10 @@ final class MapPin: Identifiable {
 
 
 extension MapPin {
+    
+    static func makeSample(_ coordinate: CLLocationCoordinate2D) -> MapPin {
+        return MapPin(title: "", description: "", latitude: coordinate.latitude, longitude: coordinate.longitude)
+    }
     /// Privacy-friendly 10 m グリッドに丸める
     private var roundedCoord: CLLocation {
         func round10m(_ value: Double) -> Double {

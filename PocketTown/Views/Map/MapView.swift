@@ -14,6 +14,7 @@ struct MapView: View {
     @Query var mapPins: [MapPin]
     
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+    @State private var tappedPin: MapPin?
     @State private var selectedPin: MapPin?
     @State private var selection: MapSelection<MapPlace>?
     @State private var isShowAddPinModal = false
@@ -44,6 +45,7 @@ struct MapView: View {
     private func handleAddPin(at location: CGPoint, with proxy: MapProxy) {
         selectedPin = nil
         if let coordinate = proxy.convert(location, from: .global) {
+            tappedPin = MapPin.makeSample(coordinate)
             zoomInCameraToCoordinate(coordinate)
             locationStore.selectedLocation = coordinate
             isShowAddPinModal = true
@@ -65,6 +67,7 @@ struct MapView: View {
     private func handleIsShowAddPinModal() {
         guard !isShowAddPinModal else { return }
         withAnimation {
+            tappedPin = nil
             selectedPin = nil
         }
     }
@@ -102,9 +105,15 @@ struct MapView: View {
                     .stroke(.blue, lineWidth: 1)
             }
             
+            if let pin = tappedPin {
+                Marker(pin.title, coordinate: pin.coordinate)
+                    .tag(MapSelection(MapPlace.pin(pin)))
+            }
+            
             ForEach(mapPins) { pin in
                 Marker(pin.title, coordinate: pin.coordinate)
                     .tag(MapSelection(MapPlace.pin(pin)))
+                    .tint(.cyan)
             }
         }
         .mapControls {
