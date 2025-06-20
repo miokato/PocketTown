@@ -133,5 +133,6 @@ struct MapView: View {
     MapView()
         .environment(LocationStore())
         .environment(WeatherStore())
+        .environment(MapPinStore())
 }
 
