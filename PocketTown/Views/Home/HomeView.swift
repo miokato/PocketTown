@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @Environment(LocationStore.self) private var locationStore
     @Environment(WeatherStore.self) private var weatherStore
+    @Environment(MapPinStore.self) private var mapPinStore
     
     /// アプリ起動時に一度だけ天気を更新
     @State private var isUpdatedWeather: Bool = false
@@ -36,6 +37,10 @@ struct HomeView: View {
         }
     }
     
+    private func updatePublicPins() {
+        mapPinStore.fetchPublicPins()
+    }
+    
     var body: some View {
         NavigationStack {
             TabView {
@@ -55,7 +60,14 @@ struct HomeView: View {
             .navigationTitle("まちポケット")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        updatePublicPins()
+                    } label: {
+                        Image(systemName: "arrow.clockwise.circle")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         isShowOnboarding = true
                     } label: {
@@ -72,5 +84,6 @@ struct HomeView: View {
         HomeView()
             .environment(LocationStore())
             .environment(WeatherStore())
+            .environment(MapPinStore())
     }
 }
