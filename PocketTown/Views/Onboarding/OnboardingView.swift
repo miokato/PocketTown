@@ -10,10 +10,15 @@ import SwiftUI
 struct OnboardingView: View {
     @Environment(\.dismiss) var dismiss
     
+    @AppStorage("doneOnboarding") private var doneOnboarding = false
     @State private var text = ""
     
     private func handleStartButtonTapped() {
         dismiss()
+    }
+    
+    private func handleAppear() {
+        doneOnboarding = true
     }
     
     var body: some View {
@@ -30,6 +35,7 @@ struct OnboardingView: View {
             .background(Material.regular, in: RoundedRectangle(cornerRadius: 4))
         }
         .padding(.horizontal, 20)
+        .onAppear(perform: handleAppear)
     }
 }
 

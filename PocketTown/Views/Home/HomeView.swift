@@ -15,18 +15,15 @@ struct HomeView: View {
     /// アプリ起動時に一度だけ天気を更新
     @State private var isUpdatedWeather: Bool = false
     @State private var isShowOnboarding: Bool = false
+    @AppStorage("doneOnboarding") private var doneOnboarding = false
     
-    private func showOnboardingWithNoAnimation() {
-        var transaction = Transaction()
-        transaction.disablesAnimations = true
-        withTransaction(transaction) {
-            isShowOnboarding = true
-        }
-    }
     
     private func handleOnAppear() {
         locationStore.startLocationUpdates()
-        showOnboardingWithNoAnimation()
+        
+        if !doneOnboarding {
+            isShowOnboarding = true
+        }
     }
 
     private func handleChangeLocation() {
