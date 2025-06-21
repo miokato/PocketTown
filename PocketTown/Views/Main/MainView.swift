@@ -8,18 +8,79 @@
 import SwiftUI
 
 struct MainView: View {
-    @State private var locationStore: LocationStore = .init()
-    @State private var weatherStore: WeatherStore = .init()
-    @State private var mapPinStore: MapPinStore = .init()
+    @Environment(LocationStore.self) private var locationStore
+    @Environment(WeatherStore.self) private var weatherStore
+    @Environment(MapPinStore.self) private var mapPinStore
+    
+    /// アプリ起動時に一度だけ天気を更新
+    @State private var isUpdatedWeather: Bool = false
+    @State private var isShowOnboarding: Bool = false
+    @AppStorage("doneOnboarding") private var doneOnboarding = false
+    
+    
+    private func handleOnAppear() {
+        locationStore.startLocationUpdates()
+        
+        if !doneOnboarding {
+            isShowOnboarding = true
+        }
+    }
+
+    private func handleChangeLocation() {
+        guard !isUpdatedWeather else { return }
+        Task {
+            await weatherStore.refreshWeather(by: locationStore.currentLocation)
+            isUpdatedWeather = true
+        }
+    }
+    
+    private func updatePublicPins() {
+        mapPinStore.fetchPublicPins()
+    }
     
     var body: some View {
-        HomeView()
-            .environment(locationStore)
-            .environment(weatherStore)
-            .environment(mapPinStore)
+        NavigationStack {
+            TabView {
+                Tab("Map", systemImage: "map") {
+                    MapView()
+                }
+                Tab("Pocket", systemImage: "list.bullet") {
+                    PocketView()
+                }
+
+            }
+            .fullScreenCover(isPresented: $isShowOnboarding, content: {
+                OnboardingView()
+            })
+            .onAppear(perform: handleOnAppear)
+            .onChange(of: locationStore.currentLocation, handleChangeLocation)
+            .navigationTitle("まちポケット")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        updatePublicPins()
+                    } label: {
+                        Image(systemName: "arrow.clockwise.circle")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        isShowOnboarding = true
+                    } label: {
+                        Image(systemName: "note")
+                    }
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    MainView()
+    NavigationStack {
+        MainView()
+            .environment(LocationStore())
+            .environment(WeatherStore())
+            .environment(MapPinStore())
+    }
 }

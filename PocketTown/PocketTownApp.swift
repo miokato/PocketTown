@@ -10,6 +10,10 @@ import SwiftData
 
 @main
 struct PocketTownApp: App {
+    @State private var locationStore: LocationStore = .init()
+    @State private var weatherStore: WeatherStore = .init()
+    @State private var mapPinStore: MapPinStore = .init()
+    
     /// SwiftDataで保存した値をCloudKitで共有する
     var modelContainer: ModelContainer = {
         let schema = Schema([
@@ -28,6 +32,9 @@ struct PocketTownApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environment(locationStore)
+                .environment(weatherStore)
+                .environment(mapPinStore)
         }
         .modelContainer(modelContainer)
     }
