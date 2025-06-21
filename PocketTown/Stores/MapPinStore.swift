@@ -12,13 +12,14 @@ import CloudKit
 
 @Observable @MainActor
 final class MapPinStore {
+    private let cloudPublicService = CloudPublicService()
     
     // MARK: - Public Methods
     func addPin(_ pin: MapPin, withContext context: ModelContext, isPublic: Bool) {
         Task {
             context.insert(pin)
             if isPublic {
-                let id = try await CloudPublicService().publish(pin)
+                let id = try await cloudPublicService.publish(pin)
                 pin.publicRecordName = id.recordName
             }
             try? context.save()
@@ -41,18 +42,18 @@ final class MapPinStore {
     
     private func removePublicPin(id: CKRecord.ID) {
         Task {
-            try await CloudPublicService().unpublish(recordID: id)
+            try await cloudPublicService.unpublish(recordID: id)
         }
     }
     
     func togglePublic(pin: MapPin, makePublic: Bool) async {
         do {
             if makePublic {
-                let id = try await CloudPublicService().publish(pin)
+                let id = try await cloudPublicService.publish(pin)
                 pin.publicRecordName = id.recordName
             } else if let name = pin.publicRecordName {
                 let id = CKRecord.ID(recordName: name)
-                try await CloudPublicService().unpublish(recordID: id)
+                try await cloudPublicService.unpublish(recordID: id)
                 pin.publicRecordName = nil
             }
         } catch {
