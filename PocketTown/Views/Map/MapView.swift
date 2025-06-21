@@ -112,10 +112,18 @@ struct MapView: View {
                     .tag(MapSelection(MapPlace.pin(pin)))
             }
             
+            /// プライベートで自分が置いているピン
             ForEach(mapPins) { pin in
                 Marker(pin.title, coordinate: pin.coordinate)
                     .tag(MapSelection(MapPlace.pin(pin)))
-                    .tint(.cyan)
+                    .tint(.primaryAccent)
+            }
+            
+            /// Publicに公開されているピン
+            ForEach(mapPinStore.publicMapPins) { pin in
+                Marker(pin.title, coordinate: pin.coordinate)
+                    .tag(MapSelection(MapPlace.pin(pin)))
+                    .tint(.tertiaryAccent)
             }
         }
         .mapControls {

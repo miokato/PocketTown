@@ -36,8 +36,8 @@ final class CloudPublicService {
                         title: record["title"] as? String ?? "",
                         note:  record["note"]  as? String ?? "",
                         timestamp: record["timestamp"] as? Date ?? .distantPast,
-                        latitude:  (record["latitude"]  as? CLLocation)?.coordinate.latitude ?? 0,
-                        longitude:  (record["longitude"]  as? CLLocation)?.coordinate.longitude ?? 0,
+                        latitude:  (record["location"]  as? CLLocation)?.coordinate.latitude ?? 0,
+                        longitude:  (record["location"]  as? CLLocation)?.coordinate.longitude ?? 0,
                     ))
                 }
             }
