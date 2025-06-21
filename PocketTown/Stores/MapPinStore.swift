@@ -14,9 +14,13 @@ import CloudKit
 final class MapPinStore {
     
     // MARK: - Public Methods
-    func addPin(_ pin: MapPin, withContext context: ModelContext) {
+    func addPin(_ pin: MapPin, withContext context: ModelContext, isPublic: Bool) {
         Task {
             context.insert(pin)
+            if isPublic {
+                let id = try await CloudPublicService().publish(pin)
+                pin.publicRecordName = id.recordName
+            }
             try? context.save()
         }
     }

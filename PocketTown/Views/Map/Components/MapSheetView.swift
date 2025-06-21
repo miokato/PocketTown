@@ -34,28 +34,30 @@ struct MapSheetView: View {
     
     // MARK: - Private Methods
     
-    private func savePin() {
+    /// ピンが存在しなければ作成、存在すれば更新
+    private func upsertPin() {
         if let selectedPin = selectedPin {
             updatePin(selectedPin, note: note)
         } else {
             guard let coordinate = locationStore.selectedLocation else { return }
-            addPinWithTitle(title, note: note, coordiante: coordinate)
+            addPin(title: title, note: note, coordiante: coordinate)
         }
         dismiss()
     }
     
+    /// ピンの情報を更新
     private func updatePin(_ pin: MapPin, note: String) {
         pin.note = note
     }
     
-    private func addPinWithTitle(_ title: String, note: String, coordiante: CLLocationCoordinate2D) {
+    private func addPin(title: String, note: String, coordiante: CLLocationCoordinate2D) {
         let pin = MapPin(
             title: title,
             note: note,
             latitude: coordinate.latitude,
             longitude: coordinate.longitude
         )
-        mapPinStore.addPin(pin, withContext: modelContext)
+        mapPinStore.addPin(pin, withContext: modelContext, isPublic: togglePublication)
     }
     
     private func removePin() {
@@ -81,6 +83,8 @@ struct MapSheetView: View {
     private func showDeleteAlert() {
         isShowDeleteAlert = true
     }
+    
+    // MARK: - methods (handler)
     
     private func handleAppear() {
         updateTextField()
@@ -208,7 +212,7 @@ struct MapSheetView: View {
     
     @ViewBuilder
     private var saveButton: some View {
-        Button("mapsheet.button.save", action: savePin)
+        Button("mapsheet.button.save", action: upsertPin)
             .fontWeight(.semibold)
             .disabled(title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
     }
