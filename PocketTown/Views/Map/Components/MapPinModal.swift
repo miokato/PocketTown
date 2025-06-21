@@ -1,5 +1,5 @@
 //
-//  MapSheetView.swift
+//  MapPinModal.swift
 //  PocketTown
 //
 //  Created by mio-kato on 2025/06/14.
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 import MapKit
 
-struct MapSheetView: View {
+struct MapPinModal: View {
     let selectedPin: MapPin?
     
     @Environment(\.dismiss) private var dismiss
@@ -219,7 +219,7 @@ struct MapSheetView: View {
 }
 
 #Preview {
-    MapSheetView(selectedPin: nil)
+    MapPinModal(selectedPin: nil)
         .environment(MapPinStore())
         .environment(LocationStore())
 }

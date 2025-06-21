@@ -99,7 +99,7 @@ struct MapView: View {
             }
         }
         .sheet(isPresented: $isShowAddPinModal, content: {
-            MapSheetView(selectedPin: selectedPin)
+            MapPinModal(selectedPin: selectedPin)
                 .presentationDetents([.medium])
         })
         .sheet(isPresented: $isShowPublicPinModal, content: {
