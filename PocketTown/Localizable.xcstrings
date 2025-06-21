@@ -321,6 +321,9 @@
     "Pocket" : {
 
     },
+    "PublicMapModalView" : {
+
+    },
     "weather.button.retry" : {
       "localizations" : {
         "en" : {

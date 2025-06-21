@@ -10,6 +10,7 @@ import MapKit
 
 enum MapPlace: Hashable {
     case pin(MapPin)
+    case publicPin(MapPin)
     case poi(MKMapItem)
 }
 

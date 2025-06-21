@@ -19,7 +19,8 @@ struct MapView: View {
     @State private var selectedPin: MapPin?
     @State private var selection: MapSelection<MapPlace>?
     @State private var isShowAddPinModal = false
-    
+    @State private var isShowPublicPinModal = false
+
     // MARK: - Private Methods
     
     private func requestLocationPermissionIfNeeded() {
@@ -61,6 +62,10 @@ struct MapView: View {
             selectedPin = pin
             zoomInCameraToCoordinate(pin.coordinate)
             isShowAddPinModal = true
+        case .publicPin(let pin):
+            selectedPin = pin
+            zoomInCameraToCoordinate(pin.coordinate)
+            isShowPublicPinModal = true
         case .poi(let item):
             break
         }
@@ -74,6 +79,14 @@ struct MapView: View {
         }
     }
     
+    private func handleIsShowPublicPinModal() {
+        guard !isShowPublicPinModal else { return }
+        withAnimation {
+            tappedPin = nil
+            selectedPin = nil
+        }
+    }
+
     // MARK: - Body
     
     var body: some View {
@@ -89,9 +102,14 @@ struct MapView: View {
             MapSheetView(selectedPin: selectedPin)
                 .presentationDetents([.medium])
         })
+        .sheet(isPresented: $isShowPublicPinModal, content: {
+            PublicPinModalView(selectedPin: selectedPin)
+                .presentationDetents([.medium])
+        })
         .onAppear(perform: handleAppear)
         .onChange(of: selection, handleTapSelection)
         .onChange(of: isShowAddPinModal, handleIsShowAddPinModal)
+        .onChange(of: isShowPublicPinModal, handleIsShowPublicPinModal)
     }
     
     // MARK: View builders
@@ -122,7 +140,7 @@ struct MapView: View {
             /// Publicに公開されているピン
             ForEach(mapPinStore.publicMapPins) { pin in
                 Marker(pin.title, coordinate: pin.coordinate)
-                    .tag(MapSelection(MapPlace.pin(pin)))
+                    .tag(MapSelection(MapPlace.publicPin(pin)))
                     .tint(.tertiaryAccent)
             }
         }
