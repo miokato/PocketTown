@@ -12,8 +12,19 @@ struct PocketView: View {
     @Query var mapPins: [MapPin]
     
     var body: some View {
-        List(mapPins) { pin in
-            Text("\(pin.title)")
+        NavigationStack {
+            List(mapPins) { pin in
+                NavigationLink {
+                    if pin.isPublic {
+                        MapPinModal(selectedPin: pin)
+                    } else {
+                        MapPinModal(selectedPin: pin)
+                    }
+                    
+                } label: {
+                    Text("\(pin.title)")
+                }
+            }
         }
     }
 }

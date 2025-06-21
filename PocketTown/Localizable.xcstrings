@@ -321,9 +321,6 @@
     "Pocket" : {
 
     },
-    "PublicMapModalView" : {
-
-    },
     "weather.button.retry" : {
       "localizations" : {
         "en" : {
@@ -1040,8 +1037,10 @@
     "場所の説明を入力" : {
 
     },
+    "存在しないピンです" : {
+
+    },
     "座標" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
