@@ -60,10 +60,10 @@ extension MapPin {
     /// Public 用 CKRecord を生成
     func makePublicRecord() -> CKRecord {
         let record = CKRecord(recordType: "PublicPin")
-        record["id"]        = id.uuidString as CKRecordValue
-        record["title"]     = title        as CKRecordValue
-        record["timestamp"] = timestamp    as CKRecordValue
-        record["location"]  = roundedCoord
+        record["id"] = id.uuidString as CKRecordValue
+        record["title"] = title as CKRecordValue
+        record["timestamp"] = timestamp as CKRecordValue
+        record["location"] = roundedCoord
         return record
     }
 }

@@ -9,14 +9,20 @@ import CloudKit
 
 @MainActor
 final class CloudPublicService {
-    private let db = CKContainer(identifier: "iCloud.co.utomica.PocketTown")
-                  .publicCloudDatabase
+    private let db = CKContainer(
+        identifier: "iCloud.co.utomica.PocketTown"
+    ).publicCloudDatabase
 
     /// 公開 ON
     func publish(_ pin: MapPin) async throws -> CKRecord.ID {
-        let rec = pin.makePublicRecord()
-        let saved = try await db.save(rec)
-        return saved.recordID
+        if let publicRecordName = pin.publicRecordName {
+            let id = CKRecord.ID(recordName: publicRecordName)
+            return id
+        } else {
+            let rec = pin.makePublicRecord()
+            let saved = try await db.save(rec)
+            return saved.recordID
+        }
     }
 
     /// 公開 OFF

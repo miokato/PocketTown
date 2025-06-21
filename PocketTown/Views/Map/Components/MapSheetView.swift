@@ -71,12 +71,20 @@ struct MapSheetView: View {
         locationStore.selectedLocation = selectedPin.coordinate
     }
     
+    private func updateTogglePublication() {
+        guard let selectedPin = selectedPin else { return }
+        if selectedPin.publicRecordName != nil {
+            togglePublication = true
+        }
+    }
+    
     private func showDeleteAlert() {
         isShowDeleteAlert = true
     }
     
     private func handleAppear() {
         updateTextField()
+        updateTogglePublication()
     }
     
     private func handleTogglePublication() {
