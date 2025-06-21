@@ -22,7 +22,23 @@ final class MapPinStore {
     }
     
     func removePin(_ pin: MapPin, withContext context: ModelContext) {
+        removePublicPinIfNeeded(for: pin)
         context.delete(pin)
+    }
+    
+    /// PublicRecordNameが登録されているときはiCloudのpublicDBに入っているピンのデータを削除する
+    private func removePublicPinIfNeeded(for pin: MapPin) {
+        if let name = pin.publicRecordName {
+            let id = CKRecord.ID(recordName: name)
+            removePublicPin(id: id)
+            pin.publicRecordName = nil
+        }
+    }
+    
+    private func removePublicPin(id: CKRecord.ID) {
+        Task {
+            try await CloudPublicService().unpublish(recordID: id)
+        }
     }
     
     func togglePublic(pin: MapPin, makePublic: Bool) async {

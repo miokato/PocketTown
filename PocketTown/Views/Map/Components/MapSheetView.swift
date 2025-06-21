@@ -58,7 +58,7 @@ struct MapSheetView: View {
         mapPinStore.addPin(pin, withContext: modelContext)
     }
     
-    private func deletePin() {
+    private func removePin() {
         guard let selectedPin = selectedPin else { return }
         mapPinStore.removePin(selectedPin, withContext: modelContext)
     }
@@ -132,7 +132,7 @@ struct MapSheetView: View {
                     isShowDeleteAlert = false
                 }
                 Button("削除", role: .destructive) {
-                    deletePin()
+                    removePin()
                     dismiss()
                 }
             }
