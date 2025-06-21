@@ -62,6 +62,7 @@ extension MapPin {
         let record = CKRecord(recordType: "PublicPin")
         record["id"] = id.uuidString as CKRecordValue
         record["title"] = title as CKRecordValue
+        record["note"] = note as CKRecordValue
         record["timestamp"] = timestamp as CKRecordValue
         record["location"] = roundedCoord
         return record

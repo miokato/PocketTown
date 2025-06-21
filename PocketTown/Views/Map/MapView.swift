@@ -11,6 +11,7 @@ import SwiftData
 
 struct MapView: View {
     @Environment(LocationStore.self) private var locationStore
+    @Environment(MapPinStore.self) private var mapPinStore
     @Query var mapPins: [MapPin]
     
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
@@ -40,6 +41,7 @@ struct MapView: View {
     
     private func handleAppear() {
         requestLocationPermissionIfNeeded()
+        mapPinStore.fetchPublicPins()
     }
     
     private func handleAddPin(at location: CGPoint, with proxy: MapProxy) {

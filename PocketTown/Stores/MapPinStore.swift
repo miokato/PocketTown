@@ -12,9 +12,23 @@ import CloudKit
 
 @Observable @MainActor
 final class MapPinStore {
+    var publicMapPins: [MapPin] = []
+    
     private let cloudPublicService = CloudPublicService()
     
     // MARK: - Public Methods
+    
+    func fetchPublicPins() {
+        Task {
+            do {
+                publicMapPins = try await cloudPublicService.fetchMapPins()
+                log("\(publicMapPins)", with: .debug)
+            } catch {
+                log("\(error)", with: .error)
+            }
+        }
+    }
+    
     func addPin(_ pin: MapPin, withContext context: ModelContext, isPublic: Bool) {
         Task {
             context.insert(pin)
