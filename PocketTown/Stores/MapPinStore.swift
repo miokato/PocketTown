@@ -65,10 +65,12 @@ final class MapPinStore {
             if makePublic {
                 let id = try await cloudPublicService.publish(pin)
                 pin.publicRecordName = id.recordName
+                pin.isPublic = true
             } else if let name = pin.publicRecordName {
                 let id = CKRecord.ID(recordName: name)
                 try await cloudPublicService.unpublish(recordID: id)
                 pin.publicRecordName = nil
+                pin.isPublic = false
             }
         } catch {
             assertionFailure("Failed to toggle public status of a pin.")

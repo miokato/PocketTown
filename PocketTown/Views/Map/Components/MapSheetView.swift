@@ -55,7 +55,8 @@ struct MapSheetView: View {
             title: title,
             note: note,
             latitude: coordinate.latitude,
-            longitude: coordinate.longitude
+            longitude: coordinate.longitude,
+            isPublic: togglePublication
         )
         mapPinStore.addPin(pin, withContext: modelContext, isPublic: togglePublication)
     }

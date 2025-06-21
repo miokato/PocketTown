@@ -38,6 +38,7 @@ final class CloudPublicService {
                         timestamp: record["timestamp"] as? Date ?? .distantPast,
                         latitude:  (record["location"]  as? CLLocation)?.coordinate.latitude ?? 0,
                         longitude:  (record["location"]  as? CLLocation)?.coordinate.longitude ?? 0,
+                        isPublic: true
                     ))
                 }
             }
