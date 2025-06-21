@@ -18,6 +18,7 @@ final class MapPin: Identifiable {
     var timestamp: Date = Date()
     var latitude: Double = 0
     var longitude: Double = 0
+    var isPublic: Bool = false
     var publicRecordName: String?
     
     init(
@@ -26,7 +27,8 @@ final class MapPin: Identifiable {
         note: String,
         timestamp: Date = Date(),
         latitude: Double,
-        longitude: Double
+        longitude: Double,
+        isPublic: Bool
     ) {
         self.id = id
         self.title = title
@@ -34,6 +36,7 @@ final class MapPin: Identifiable {
         self.timestamp = timestamp
         self.latitude = latitude
         self.longitude = longitude
+        self.isPublic = isPublic
     }
     
     // MARK: - Computed Properties
@@ -46,7 +49,7 @@ final class MapPin: Identifiable {
 extension MapPin {
     
     static func makeSample(_ coordinate: CLLocationCoordinate2D) -> MapPin {
-        return MapPin(title: "", note: "", latitude: coordinate.latitude, longitude: coordinate.longitude)
+        return MapPin(title: "", note: "", latitude: coordinate.latitude, longitude: coordinate.longitude, isPublic: false)
     }
     /// Privacy-friendly 10 m グリッドに丸める
     private var roundedCoord: CLLocation {
@@ -64,6 +67,7 @@ extension MapPin {
         record["title"] = title as CKRecordValue
         record["note"] = note as CKRecordValue
         record["timestamp"] = timestamp as CKRecordValue
+        record["isPublic"] = true as CKRecordValue
         record["location"] = roundedCoord
         return record
     }

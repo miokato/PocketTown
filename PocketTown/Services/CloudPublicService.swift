@@ -9,14 +9,23 @@ import CloudKit
 
 @MainActor
 final class CloudPublicService {
-    private let db = CKContainer(
+    private let container = CKContainer(
         identifier: "iCloud.co.utomica.PocketTown"
-    ).publicCloudDatabase
+    )
+    private var db: CKDatabase {
+        container.publicCloudDatabase
+    }
     
     func fetchMapPins() async throws -> [MapPin] {
+        // 自分が作成したピンを除外するため、userRecordIDを利用。
+        // CloudKit Console側でも処理が必要
+        // https://stackoverflow.com/questions/69610184/field-recordname-is-not-marked-queryable-cloudkit-dashboard
+        let userRecordID = try await container.userRecordID()
+        let myRef = CKRecord.Reference(recordID: userRecordID, action: .none)
+        let predicate = NSPredicate(format:"creatorUserRecordID != %@", myRef)
         let query = CKQuery(
             recordType: "PublicPin",
-            predicate: NSPredicate(value: true)
+            predicate: predicate
         )
         
         var all: [MapPin] = []
@@ -38,6 +47,7 @@ final class CloudPublicService {
                         timestamp: record["timestamp"] as? Date ?? .distantPast,
                         latitude:  (record["location"]  as? CLLocation)?.coordinate.latitude ?? 0,
                         longitude:  (record["location"]  as? CLLocation)?.coordinate.longitude ?? 0,
+                        isPublic: true
                     ))
                 }
             }
