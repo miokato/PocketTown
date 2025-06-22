@@ -11,6 +11,7 @@ struct MainView: View {
     @Environment(LocationStore.self) private var locationStore
     @Environment(WeatherStore.self) private var weatherStore
     @Environment(MapPinStore.self) private var mapPinStore
+    @Environment(\.scenePhase) var scenePhase
     
     /// アプリ起動時に一度だけ天気を更新
     @State private var isUpdatedWeather: Bool = false
@@ -25,6 +26,11 @@ struct MainView: View {
             isShowOnboarding = true
         }
     }
+    
+    private func updatePublicPins() {
+        guard let userLocation = locationStore.savedUserLocation else { return }
+        mapPinStore.fetchPublicPins(around: userLocation)
+    }
 
     private func handleChangeLocation() {
         guard !isUpdatedWeather else { return }
@@ -34,9 +40,10 @@ struct MainView: View {
         }
     }
     
-    private func updatePublicPins() {
-        guard let userLocation = locationStore.savedUserLocation else { return }
-        mapPinStore.fetchPublicPins(around: userLocation)
+    /// フォアグラウンド遷移時にPublicなピンを取得
+    private func handleUpdatePhase() {
+        guard scenePhase == .active else { return }
+        updatePublicPins()
     }
     
     var body: some View {
@@ -55,6 +62,7 @@ struct MainView: View {
             })
             .onAppear(perform: handleOnAppear)
             .onChange(of: locationStore.currentLocation, handleChangeLocation)
+            .onChange(of: scenePhase, handleUpdatePhase)
             .navigationTitle("app.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
