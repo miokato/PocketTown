@@ -56,21 +56,23 @@ struct DateTimeView: View {
             // 年
             Text(yearFormatter.string(from: currentDate))
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundColor(.textSecondary)
             // 月日
             Text(monthDayFormatter.string(from: currentDate))
                 .font(.title2)
                 .fontWeight(.medium)
+                .foregroundColor(.textPrimary)
             // 曜日
             Text(weekdayFormatter.string(from: currentDate))
                 .font(.body)
-                .foregroundColor(.secondary)
+                .foregroundColor(.textSecondary)
             Divider()
                 .padding(.horizontal)
             // 時刻
             Text(timeFormatter.string(from: currentDate))
                 .font(.title)
                 .fontWeight(.semibold)
+                .foregroundColor(.textPrimary)
                 .monospacedDigit()
         }
         .padding(.vertical)

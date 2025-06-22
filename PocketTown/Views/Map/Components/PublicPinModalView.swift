@@ -17,6 +17,7 @@ struct PublicPinModalView: View {
                     Text(pin.title)
                     Text(pin.note)
                 }
+                .foregroundStyle(.textPrimary)
                 Section {
                     coordinateView(pin: pin)
                 } header: {
@@ -38,7 +39,7 @@ struct PublicPinModalView: View {
             }
         }
         .font(.caption)
-        .foregroundColor(.primary)
+        .foregroundColor(.textPrimary)
     }
 }
 

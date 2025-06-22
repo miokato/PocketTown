@@ -41,7 +41,7 @@ struct WeatherView: View {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle())
             Text(String(localized: "weather.loading.message"))
-                .foregroundColor(.secondary)
+                .foregroundColor(.textSecondary)
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -56,7 +56,7 @@ struct WeatherView: View {
             
             Text(String(localized: "weather.error.unavailable"))
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundColor(.textSecondary)
             
             Button(String(localized: "weather.button.retry")) {
                 Task {
@@ -74,9 +74,9 @@ struct WeatherView: View {
         HStack {
             Image(systemName: "cloud")
                 .font(.title)
-                .foregroundColor(.secondary)
+                .foregroundColor(.textSecondary)
             Text(String(localized: "weather.loading.message"))
-                .foregroundColor(.secondary)
+                .foregroundColor(.textSecondary)
         }
         .frame(maxWidth: .infinity)
     }

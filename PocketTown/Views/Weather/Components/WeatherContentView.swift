@@ -30,6 +30,7 @@ struct WeatherContentView: View {
                 // 天気の説明
                 Text(weather.description)
                     .font(.headline)
+                    .foregroundColor(.textPrimary)
             }
             
             VStack(alignment: .leading, spacing: 8) {
@@ -38,6 +39,7 @@ struct WeatherContentView: View {
                     Text(temperatureFormatter.string(from: weather.temperature))
                         .font(.title2)
                         .fontWeight(.semibold)
+                        .foregroundColor(.textPrimary)
                 }
                 
                 // 最高/最低気温
@@ -53,7 +55,7 @@ struct WeatherContentView: View {
                 // 湿度
                 Label("\(Int(weather.humidity * 100))%", systemImage: "humidity")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.textSecondary)
                 
             }
             

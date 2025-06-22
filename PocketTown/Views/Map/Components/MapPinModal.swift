@@ -154,23 +154,11 @@ struct MapPinModal: View {
     }
     
     @ViewBuilder
-    private var publicationToggle: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Toggle("公開する", isOn: $togglePublication)
-            }
-            Text("公開すると同じアプリを利用しているすべてのユーザーが閲覧できます。")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .onChange(of: togglePublication, handleTogglePublication)
-    }
-    
-    @ViewBuilder
     private var titleTextField: some View {
         VStack(alignment: .leading) {
             Text("mapsheet.label.title")
-                .font(.headline)
+                .font(.body)
+                .foregroundStyle(.textPrimary)
             TextField(
                 "mapsheet.placeholder.title",
                 text: $title,
@@ -186,6 +174,8 @@ struct MapPinModal: View {
     private var noteTextField: some View {
         VStack(alignment: .leading) {
             Text("説明")
+                .font(.body)
+                .foregroundStyle(.textPrimary)
             TextField(
                 "場所の説明を入力",
                 text: $note,
@@ -197,10 +187,25 @@ struct MapPinModal: View {
     }
     
     @ViewBuilder
+    private var publicationToggle: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Toggle("公開する", isOn: $togglePublication)
+                    .foregroundStyle(.textPrimary)
+            }
+            Text("公開すると同じアプリを利用しているすべてのユーザーが閲覧できます。")
+                .font(.caption)
+                .foregroundStyle(.textSecondary)
+        }
+        .onChange(of: togglePublication, handleTogglePublication)
+    }
+    
+    @ViewBuilder
     private var coordinateView: some View {
         VStack(alignment: .leading) {
             Text("mapsheet.label.coordinates")
-                .font(.headline)
+                .font(.body)
+                .foregroundStyle(.textPrimary)
             HStack {
                 Image(systemName: "location")
                 Text("mapsheet.label.latitude") + Text(": \(coordinate.latitude, format: .number.precision(.fractionLength(6)))")
@@ -208,7 +213,7 @@ struct MapPinModal: View {
             }
         }
         .font(.caption)
-        .foregroundColor(.primary)
+        .foregroundColor(.textPrimary)
     }
     
     @ViewBuilder
