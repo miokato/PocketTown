@@ -14,7 +14,7 @@ final class LocationStore {
     
     // MARK: - Initialization
     init() {
-        startMonitoringAuthorization()
+        startMonitoring()
     }
     
     // MARK: - Public Methods
@@ -37,6 +37,26 @@ final class LocationStore {
     }
     
     // MARK: - Private Methods
+    
+    private func startMonitoring() {
+        startMonitoringAuthorization()
+        startMonitoringLocation()
+    }
+    
+    private func startMonitoringLocation() {
+        locationTask?.cancel()
+        locationTask = Task { [weak self] in
+            guard let self else { return }
+            
+            for await location in locationService.locationUpdates() {
+                await MainActor.run {
+                    self.currentLocation = location
+                    self.locationError = nil
+                }
+            }
+        }
+    }
+    
     private func startMonitoringAuthorization() {
         authorizationTask?.cancel()
         authorizationTask = Task { [weak self] in
@@ -46,18 +66,6 @@ final class LocationStore {
                 await MainActor.run {
                     self.authorizationStatus = status
                     self.updateLocationError(for: status)
-                }
-            }
-        }
-        
-        locationTask?.cancel()
-        locationTask = Task { [weak self] in
-            guard let self else { return }
-            
-            for await location in locationService.locationUpdates() {
-                await MainActor.run {
-                    self.currentLocation = location
-                    self.locationError = nil
                 }
             }
         }
