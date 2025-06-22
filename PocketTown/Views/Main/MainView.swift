@@ -35,7 +35,8 @@ struct MainView: View {
     }
     
     private func updatePublicPins() {
-        mapPinStore.fetchPublicPins()
+        guard let userLocation = locationStore.savedUserLocation else { return }
+        mapPinStore.fetchPublicPins(around: userLocation)
     }
     
     var body: some View {

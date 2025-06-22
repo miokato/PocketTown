@@ -42,7 +42,9 @@ struct MapView: View {
     
     private func handleAppear() {
         requestLocationPermissionIfNeeded()
-        mapPinStore.fetchPublicPins()
+        if let userLocation = locationStore.savedUserLocation {
+            mapPinStore.fetchPublicPins(around: userLocation)
+        }
     }
     
     private func handleAddPin(at location: CGPoint, with proxy: MapProxy) {

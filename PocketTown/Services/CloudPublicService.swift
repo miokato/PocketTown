@@ -33,26 +33,30 @@ final class CloudPublicService {
         try await db.deleteRecord(withID: recordID)
     }
 
-    func fetchMapPins() async throws -> [MapPin] {
-        let query = try await createPublicPinsQuery()
+    func fetchMapPins(around: CLLocation) async throws -> [MapPin] {
+        let query = try await createPublicPinsQuery(around: around)
         return try await fetchAllRecords(using: query)
     }
     
     // MARK: - Private Methods
     
-    /// 自分以外のユーザーが作成したパブリックピンを取得するクエリを作成
-    private func createPublicPinsQuery() async throws -> CKQuery {
-        // 自分が作成したピンを除外するため、userRecordIDを利用。
-        // CloudKit Console側でも処理が必要
+    private func createPublicPinsQuery(
+        around here: CLLocation,
+        radius: Double = 1_000
+    ) async throws -> CKQuery {
+        // A) 自分のレコード ID (CloudKit Console側でも処理が必要)
         // https://stackoverflow.com/questions/69610184/field-recordname-is-not-marked-queryable-cloudkit-dashboard
-        let userRecordID = try await container.userRecordID()
-        let myRef = CKRecord.Reference(recordID: userRecordID, action: .none)
-        let predicate = NSPredicate(format: "creatorUserRecordID != %@", myRef)
-        
-        return CKQuery(
-            recordType: "PublicPin",
-            predicate: predicate
+        let myRecordID = try await container.userRecordID()
+        let myRef = CKRecord.Reference(recordID: myRecordID, action: .none)
+
+        // B) 2 条件を AND で結合
+        let predicate  = NSPredicate(format:
+            "creatorUserRecordID != %@ AND "
+          + "distanceToLocation:fromLocation:(location, %@) < %f",
+            myRef, here, radius
         )
+
+        return CKQuery(recordType: "PublicPin", predicate: predicate)
     }
     
     /// 指定されたクエリを使用して、ページネーションですべてのレコードを取得

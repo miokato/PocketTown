@@ -18,10 +18,10 @@ final class MapPinStore {
     
     // MARK: - Public Methods
     
-    func fetchPublicPins() {
+    func fetchPublicPins(around: CLLocation) {
         Task {
             do {
-                publicMapPins = try await cloudPublicService.fetchMapPins()
+                publicMapPins = try await cloudPublicService.fetchMapPins(around: around)
                 log("\(publicMapPins)", with: .debug)
             } catch {
                 log("\(error)", with: .error)
