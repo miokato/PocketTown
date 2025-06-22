@@ -12,11 +12,22 @@
 		95CE20962DFCE85000301962 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 95CE20952DFCE85000301962 /* .gitignore */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AE927BDD2E07E57C003388A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95CE20632DFCE5EB00301962 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 95CE206A2DFCE5EB00301962;
+			remoteInfo = PocketTown;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		95CE206B2DFCE5EB00301962 /* PocketTown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketTown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CE20912DFCE84000301962 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		95CE20932DFCE84600301962 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		95CE20952DFCE85000301962 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		AE927BD92E07E57C003388A0 /* PocketTownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketTownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -38,10 +49,22 @@
 			path = PocketTown;
 			sourceTree = "<group>";
 		};
+		AE927BDA2E07E57C003388A0 /* PocketTownTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PocketTownTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		95CE20682DFCE5EB00301962 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE927BD62E07E57C003388A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,6 +81,7 @@
 				95CE20912DFCE84000301962 /* CLAUDE.md */,
 				95CE20932DFCE84600301962 /* README.md */,
 				95CE206D2DFCE5EB00301962 /* PocketTown */,
+				AE927BDA2E07E57C003388A0 /* PocketTownTests */,
 				95CE206C2DFCE5EB00301962 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				95CE206B2DFCE5EB00301962 /* PocketTown.app */,
+				AE927BD92E07E57C003388A0 /* PocketTownTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +120,29 @@
 			productReference = 95CE206B2DFCE5EB00301962 /* PocketTown.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AE927BD82E07E57C003388A0 /* PocketTownTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE927BE12E07E57C003388A0 /* Build configuration list for PBXNativeTarget "PocketTownTests" */;
+			buildPhases = (
+				AE927BD52E07E57C003388A0 /* Sources */,
+				AE927BD62E07E57C003388A0 /* Frameworks */,
+				AE927BD72E07E57C003388A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE927BDE2E07E57C003388A0 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AE927BDA2E07E57C003388A0 /* PocketTownTests */,
+			);
+			name = PocketTownTests;
+			packageProductDependencies = (
+			);
+			productName = PocketTownTests;
+			productReference = AE927BD92E07E57C003388A0 /* PocketTownTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -102,11 +150,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1630;
+				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					95CE206A2DFCE5EB00301962 = {
 						CreatedOnToolsVersion = 16.3;
+					};
+					AE927BD82E07E57C003388A0 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 95CE206A2DFCE5EB00301962;
 					};
 				};
 			};
@@ -126,6 +178,7 @@
 			projectRoot = "";
 			targets = (
 				95CE206A2DFCE5EB00301962 /* PocketTown */,
+				AE927BD82E07E57C003388A0 /* PocketTownTests */,
 			);
 		};
 /* End PBXProject section */
@@ -141,6 +194,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AE927BD72E07E57C003388A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -151,7 +211,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AE927BD52E07E57C003388A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AE927BDE2E07E57C003388A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 95CE206A2DFCE5EB00301962 /* PocketTown */;
+			targetProxy = AE927BDD2E07E57C003388A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		95CE20742DFCE5EC00301962 /* Debug */ = {
@@ -347,6 +422,44 @@
 			};
 			name = Release;
 		};
+		AE927BDF2E07E57C003388A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6G9A5395V2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.miokato.PocketTownTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PocketTown.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PocketTown";
+			};
+			name = Debug;
+		};
+		AE927BE02E07E57C003388A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6G9A5395V2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.miokato.PocketTownTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PocketTown.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PocketTown";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -364,6 +477,15 @@
 			buildConfigurations = (
 				95CE20772DFCE5EC00301962 /* Debug */,
 				95CE20782DFCE5EC00301962 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE927BE12E07E57C003388A0 /* Build configuration list for PBXNativeTarget "PocketTownTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE927BDF2E07E57C003388A0 /* Debug */,
+				AE927BE02E07E57C003388A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
