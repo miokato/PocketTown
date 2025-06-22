@@ -36,20 +36,6 @@ final class LocationStore {
         }
     }
     
-    func locationUpdates() -> AsyncStream<CLLocation> {
-        AsyncStream { continuation in
-            Task { [weak self] in
-                guard let self else { return }
-                
-                for await location in locationService.locationUpdates() {
-                    continuation.yield(location)
-                }
-                
-                continuation.finish()
-            }
-        }
-    }
-    
     // MARK: - Private Methods
     private func startMonitoringAuthorization() {
         authorizationTask?.cancel()
