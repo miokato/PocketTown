@@ -14,7 +14,7 @@ struct MapView: View {
     @Environment(MapPinStore.self) private var mapPinStore
     @Query var mapPins: [MapPin]
     
-    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+    @State private var position: MapCameraPosition = .automatic
     @State private var tappedPin: MapPin?
     @State private var selectedPin: MapPin?
     @State private var selection: MapSelection<MapPlace>?
