@@ -10,6 +10,22 @@
     "%lld%%" : {
 
     },
+    "app.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocket Town"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "まちポケット"
+          }
+        }
+      }
+    },
     "error.location.permission" : {
       "localizations" : {
         "en" : {
@@ -165,6 +181,22 @@
     "MapItem" : {
 
     },
+    "mapsheet.alert.delete" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除しますか"
+          }
+        }
+      }
+    },
     "mapsheet.alert.title" : {
       "localizations" : {
         "en" : {
@@ -193,6 +225,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キャンセル"
+          }
+        }
+      }
+    },
+    "mapsheet.button.delete" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除"
           }
         }
       }
@@ -264,6 +312,54 @@
         }
       }
     },
+    "mapsheet.label.note" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "説明"
+          }
+        }
+      }
+    },
+    "mapsheet.label.public" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make Public"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "公開する"
+          }
+        }
+      }
+    },
+    "mapsheet.label.public.description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If made public, all users using the same app will be able to view this."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "公開すると同じアプリを利用しているすべてのユーザーが閲覧できます。"
+          }
+        }
+      }
+    },
     "mapsheet.label.title" : {
       "comment" : "Title label for the map pin",
       "localizations" : {
@@ -277,6 +373,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "タイトル"
+          }
+        }
+      }
+    },
+    "mapsheet.placeholder.note" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter place description"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "場所の説明を入力"
           }
         }
       }
@@ -318,8 +430,88 @@
     "OK" : {
 
     },
+    "onboarding.button.start" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "はじめる"
+          }
+        }
+      }
+    },
+    "onboarding.description.location" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get your current location and set it as your home."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在位置を取得して、ホームに設定してください。"
+          }
+        }
+      }
+    },
+    "onboarding.description.main" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pocket Town is an app that lets you register your favorite shops and places on a map within a 1km radius of your home."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "まちポケットは自分の家の半径1km圏内の地図に、お気に入りのお店や場所を登録するアプリです。"
+          }
+        }
+      }
+    },
+    "onboarding.description.radius" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The blue circle displayed in the app represents a 1km radius."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリに表示されている青い円が半径1km圏内を表しています。"
+          }
+        }
+      }
+    },
     "Pocket" : {
 
+    },
+    "publicpin.error.notfound" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pin does not exist"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "存在しないピンです"
+          }
+        }
+      }
     },
     "weather.button.retry" : {
       "localizations" : {
@@ -929,10 +1121,8 @@
         }
       }
     },
-    "アプリに表示されている青い円が半径1km圏内を表しています。" : {
-
-    },
     "キャンセル" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -982,15 +1172,6 @@
         }
       }
     },
-    "はじめる" : {
-
-    },
-    "まちポケット" : {
-
-    },
-    "まちポケットは自分の家の半径1km圏内の地図に、お気に入りのお店や場所を登録するアプリです。" : {
-
-    },
     "保存" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1007,18 +1188,6 @@
           }
         }
       }
-    },
-    "公開する" : {
-
-    },
-    "公開すると同じアプリを利用しているすべてのユーザーが閲覧できます。" : {
-
-    },
-    "削除" : {
-
-    },
-    "削除しますか" : {
-
     },
     "場所の名前を入力" : {
       "extractionState" : "stale",
@@ -1037,13 +1206,8 @@
         }
       }
     },
-    "場所の説明を入力" : {
-
-    },
-    "存在しないピンです" : {
-
-    },
     "座標" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1075,9 +1239,6 @@
           }
         }
       }
-    },
-    "現在位置を取得して、ホームに設定してください。" : {
-
     },
     "経度: %@" : {
       "extractionState" : "stale",
@@ -1112,9 +1273,6 @@
           }
         }
       }
-    },
-    "説明" : {
-
     }
   },
   "version" : "1.0"

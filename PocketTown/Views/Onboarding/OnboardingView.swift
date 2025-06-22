@@ -23,13 +23,13 @@ struct OnboardingView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
-            Text("まちポケット")
+            Text("app.title")
                 .font(.title)
                 .foregroundStyle(.textPrimary)
             VStack(alignment: .leading, spacing: 12) {
-                Text("まちポケットは自分の家の半径1km圏内の地図に、お気に入りのお店や場所を登録するアプリです。")
-                Text("現在位置を取得して、ホームに設定してください。")
-                Text("アプリに表示されている青い円が半径1km圏内を表しています。")
+                Text("onboarding.description.main")
+                Text("onboarding.description.location")
+                Text("onboarding.description.radius")
             }
             .font(.body)
             .foregroundStyle(.textSecondary)
@@ -41,7 +41,7 @@ struct OnboardingView: View {
     
     @ViewBuilder
     private var startWithCurrentLocationButton: some View {
-        Button("はじめる") {
+        Button("onboarding.button.start") {
             handleStartButtonTapped()
         }
         .padding(.horizontal, 20)

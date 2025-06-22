@@ -54,7 +54,7 @@ struct MainView: View {
             })
             .onAppear(perform: handleOnAppear)
             .onChange(of: locationStore.currentLocation, handleChangeLocation)
-            .navigationTitle("まちポケット")
+            .navigationTitle("app.title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

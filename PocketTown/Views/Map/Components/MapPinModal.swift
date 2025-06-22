@@ -121,7 +121,7 @@ struct MapPinModal: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("削除", role: .destructive, action: showDeleteAlert)
+                    Button("mapsheet.button.delete", role: .destructive, action: showDeleteAlert)
                         .foregroundStyle(Color.red)
                 }
             }
@@ -131,12 +131,12 @@ struct MapPinModal: View {
                 isTitleFieldFocused = true
             }
         }
-        .alert("削除しますか", isPresented: $isShowDeleteAlert) {
+        .alert("mapsheet.alert.delete", isPresented: $isShowDeleteAlert) {
             HStack {
-                Button("キャンセル", role: .cancel) {
+                Button("mapsheet.button.cancel", role: .cancel) {
                     isShowDeleteAlert = false
                 }
-                Button("削除", role: .destructive) {
+                Button("mapsheet.button.delete", role: .destructive) {
                     removePin()
                     dismiss()
                 }
@@ -173,13 +173,13 @@ struct MapPinModal: View {
     @ViewBuilder
     private var noteTextField: some View {
         VStack(alignment: .leading) {
-            Text("説明")
+            Text("mapsheet.label.note")
                 .font(.body)
                 .foregroundStyle(.textPrimary)
             TextField(
-                "場所の説明を入力",
+                "mapsheet.placeholder.note",
                 text: $note,
-                prompt: Text("場所の説明を入力")
+                prompt: Text("mapsheet.placeholder.note")
             )
             .textFieldStyle(.roundedBorder)
             .focused($isTitleFieldFocused)
@@ -190,10 +190,10 @@ struct MapPinModal: View {
     private var publicationToggle: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Toggle("公開する", isOn: $togglePublication)
+                Toggle("mapsheet.label.public", isOn: $togglePublication)
                     .foregroundStyle(.textPrimary)
             }
-            Text("公開すると同じアプリを利用しているすべてのユーザーが閲覧できます。")
+            Text("mapsheet.label.public.description")
                 .font(.caption)
                 .foregroundStyle(.textSecondary)
         }

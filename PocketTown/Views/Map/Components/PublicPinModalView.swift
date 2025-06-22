@@ -21,10 +21,10 @@ struct PublicPinModalView: View {
                 Section {
                     coordinateView(pin: pin)
                 } header: {
-                    Text("座標")
+                    Text("mapsheet.label.coordinates")
                 }
             } else {
-                Text("存在しないピンです")
+                Text("publicpin.error.notfound")
             }
         }
     }
