@@ -1122,7 +1122,6 @@
       }
     },
     "キャンセル" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1239,6 +1238,9 @@
           }
         }
       }
+    },
+    "現在位置でホームを更新" : {
+
     },
     "経度: %@" : {
       "extractionState" : "stale",

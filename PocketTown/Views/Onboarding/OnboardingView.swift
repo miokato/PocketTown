@@ -9,17 +9,28 @@ import SwiftUI
 
 struct OnboardingView: View {
     @Environment(\.dismiss) var dismiss
-    
+    @Environment(LocationStore.self) private var locationStore
     @AppStorage("doneOnboarding") private var doneOnboarding = false
-    @State private var text = ""
+    
+    // MARK: - methods
     
     private func handleStartButtonTapped() {
+        doneOnboarding = true
         dismiss()
     }
     
-    private func handleAppear() {
-        doneOnboarding = true
+    private func handleUpdateButtonTapped() {
+        locationStore.updateUserLocation()
+        dismiss()
     }
+    
+    private func handleCancelButtonTapped() {
+        dismiss()
+    }
+    
+    private func handleAppear() {}
+    
+    // MARK: - body
     
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
@@ -33,23 +44,53 @@ struct OnboardingView: View {
             }
             .font(.body)
             .foregroundStyle(.textSecondary)
-            startWithCurrentLocationButton
+            if doneOnboarding {
+                VStack(spacing: 20) {
+                    updateUserLocationButton
+                    cancelButton
+                }
+            } else {
+                startButton
+            }
         }
         .padding(.horizontal, 20)
         .onAppear(perform: handleAppear)
     }
     
+    // MARK: - view buidlers
+    
     @ViewBuilder
-    private var startWithCurrentLocationButton: some View {
+    private var startButton: some View {
         Button("onboarding.button.start") {
             handleStartButtonTapped()
         }
         .padding(.horizontal, 20)
-        .frame(height: 44)
+        .frame(maxWidth: .infinity, maxHeight: 44)
+        .background(Material.regular, in: RoundedRectangle(cornerRadius: 4))
+    }
+    
+    @ViewBuilder
+    private var updateUserLocationButton: some View {
+        Button("現在位置でホームを更新") {
+            handleUpdateButtonTapped()
+        }
+        .padding(.horizontal, 20)
+        .frame(maxWidth: .infinity, maxHeight: 44)
+        .background(Material.regular, in: RoundedRectangle(cornerRadius: 4))
+    }
+    
+    @ViewBuilder
+    private var cancelButton: some View {
+        Button("キャンセル") {
+            handleCancelButtonTapped()
+        }
+        .padding(.horizontal, 20)
+        .frame(maxWidth: .infinity, maxHeight: 44)
         .background(Material.regular, in: RoundedRectangle(cornerRadius: 4))
     }
 }
 
 #Preview {
     OnboardingView()
+        .environment(LocationStore())
 }

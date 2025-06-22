@@ -50,6 +50,16 @@ final class LocationStore {
                                         longitude: location.coordinate.longitude)
         try UserDefaultsStorage.shared.save(userLocation, withKey: UserLocation.userDefautlsKey)
     }
+    
+    /// 現在位置でユーザーのホーム位置を更新
+    func updateUserLocation() {
+        guard let currentLocation = currentLocation else { return }
+        do {
+            try saveUserLocation(currentLocation)
+        } catch {
+            log("\(error)", with: .error)
+        }
+    }
 
     // MARK: - Private Methods
     
