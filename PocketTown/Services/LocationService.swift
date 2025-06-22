@@ -13,12 +13,6 @@ final class LocationService: NSObject {
         setupLocationManager()
     }
     
-    private func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 10
-    }
-    
     // MARK: - Public Methods
     func requestLocationPermission() async {
         locationManager.requestWhenInUseAuthorization()
@@ -49,6 +43,15 @@ final class LocationService: NSObject {
             continuation.yield(locationManager.authorizationStatus)
         }
     }
+    
+    // MARK: - private methods
+    
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 10
+    }
+    
 }
 
 // MARK: - CLLocationManagerDelegate

@@ -119,7 +119,7 @@ struct MapView: View {
         Map(position: $position, selection: $selection) {
             UserAnnotation()
             
-            if let location = locationStore.currentLocation {
+            if let location = locationStore.savedUserLocation {
                 MapCircle(center: location.coordinate, radius: 1000)
                     .foregroundStyle(.black.opacity(0.05))
                     .stroke(.blue, lineWidth: 1)
