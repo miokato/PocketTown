@@ -47,9 +47,12 @@ struct PocketTownWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .date)
+        HStack {
+            VStack(alignment: .leading) {
+                Text(DateFormatter.monthDay.string(from: entry.date))
+                Text(entry.date, style: .time)
+            }
+            Spacer()
         }
     }
 }

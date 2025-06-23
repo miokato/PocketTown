@@ -68,6 +68,7 @@
 		955062FB2E09F09900E26CB1 /* Exceptions for "PocketTown" folder in "PocketTownWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"Extensions/DateFormatter+.swift",
 				Supports/Log.swift,
 			);
 			target = 955062DF2E09EE5C00E26CB1 /* PocketTownWidgetExtension */;
