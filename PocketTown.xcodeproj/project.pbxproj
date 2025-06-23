@@ -50,6 +50,7 @@
 		955062E02E09EE5C00E26CB1 /* PocketTownWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PocketTownWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		955062E22E09EE5C00E26CB1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		955062E42E09EE5C00E26CB1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		9550630C2E0A08B600E26CB1 /* PocketTownWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PocketTownWidgetExtension.entitlements; sourceTree = "<group>"; };
 		95CE206B2DFCE5EB00301962 /* PocketTown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketTown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CE20912DFCE84000301962 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		95CE20932DFCE84600301962 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -69,6 +70,9 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Extensions/DateFormatter+.swift",
+				Localizable.xcstrings,
+				Models/Weather.swift,
+				Services/WeatherService.swift,
 				Supports/Log.swift,
 			);
 			target = 955062DF2E09EE5C00E26CB1 /* PocketTownWidgetExtension */;
@@ -146,6 +150,7 @@
 		95CE20622DFCE5EB00301962 = {
 			isa = PBXGroup;
 			children = (
+				9550630C2E0A08B600E26CB1 /* PocketTownWidgetExtension.entitlements */,
 				95CE20952DFCE85000301962 /* .gitignore */,
 				95CE20912DFCE84000301962 /* CLAUDE.md */,
 				95CE20932DFCE84600301962 /* README.md */,
@@ -353,6 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PocketTownWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6G9A5395V2;
@@ -381,6 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PocketTownWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6G9A5395V2;

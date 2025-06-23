@@ -5,7 +5,7 @@ import SwiftUI
 @Observable @MainActor
 final class WeatherStore {
     // MARK: - Properties
-    private let weatherService = WeatherService()
+    private let weatherService = WeatherService.shared
     
     var weather: Weather?
     var isLoading = false

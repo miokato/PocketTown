@@ -7,40 +7,53 @@
 
 import WidgetKit
 import SwiftUI
+import WeatherKit
+import CoreLocation
+
+struct WeatherEntry: TimelineEntry {
+    let date: Date
+    let coordinate: CLLocationCoordinate2D?
+    let weather: Weather
+}
 
 struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+    
+    let store = UserDefaults(suiteName: "group.com.example.pockettown")!
+    
+    func placeholder(in context: Context) -> WeatherEntry {
+        WeatherEntry(date: Date(),
+                     coordinate: .init(latitude: 35, longitude: 135),
+                     weather: .sample)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+    func getSnapshot(in context: Context,
+                     completion: @escaping (WeatherEntry) -> ()) {
+        let entry = WeatherEntry(date: Date(),
+                                 coordinate: .init(latitude: 35, longitude: 135),
+                                 weather: .sample)
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
+    func getTimeline(in context: Context, completion: @escaping (Timeline<WeatherEntry>) -> ()) {
+        Task {
+            var coord: CLLocationCoordinate2D?
+            if let arr = store.array(forKey: "LastCoordinate") as? [Double], arr.count == 2 {
+                coord = .init(latitude: arr[0], longitude: arr[1])
+            }
+            
+            guard let c = coord else {
+                return
+            }
+            let weather = try await WeatherService.shared.fetchWeather(for: .init(latitude: c.latitude, longitude: c.longitude))
+            
+            let entry = WeatherEntry(date: .now,
+                                     coordinate: c,
+                                     weather: weather)
+            
+            let next = Calendar.current.date(byAdding: .minute, value: 1, to: .now)!
+            completion(Timeline(entries: [entry], policy: .after(next)))
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
-}
-
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let emoji: String
 }
 
 struct PocketTownWidgetEntryView : View {
@@ -48,11 +61,25 @@ struct PocketTownWidgetEntryView : View {
 
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(DateFormatter.monthDay.string(from: entry.date))
+                Text(DateFormatter.weekday.string(from: entry.date))
                 Text(entry.date, style: .time)
             }
             Spacer()
+            VStack(spacing: 8) {
+                // 天気アイコン
+                Image(systemName: entry.weather.symbolName)
+                    .font(.system(size: 30))
+                    .foregroundStyle(.tint)
+                    .symbolRenderingMode(.multicolor)
+                // 天気の説明
+                Text(entry.weather.description)
+                    .font(.headline)
+                // 湿度
+                Label("\(Int(entry.weather.humidity * 100))%", systemImage: "humidity")
+                    .font(.caption)
+            }
         }
     }
 }
@@ -79,6 +106,5 @@ struct PocketTownWidget: Widget {
 #Preview(as: .systemSmall) {
     PocketTownWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+    WeatherEntry(date: Date(), coordinate: .init(latitude: 35, longitude: 135), weather: .sample)
 }

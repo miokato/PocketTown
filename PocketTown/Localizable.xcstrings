@@ -10,6 +10,9 @@
     "%lld%%" : {
 
     },
+    "A an example control that runs a timer." : {
+
+    },
     "app.title" : {
       "localizations" : {
         "en" : {
@@ -25,6 +28,9 @@
           }
         }
       }
+    },
+    "Bottom %@" : {
+
     },
     "error.location.permission" : {
       "localizations" : {
@@ -89,6 +95,15 @@
           }
         }
       }
+    },
+    "Hello %@" : {
+
+    },
+    "L" : {
+
+    },
+    "Leading" : {
+
     },
     "Map" : {
 
@@ -427,7 +442,16 @@
         }
       }
     },
+    "My Widget" : {
+
+    },
+    "Off" : {
+
+    },
     "OK" : {
+
+    },
+    "On" : {
 
     },
     "onboarding.button.start" : {
@@ -512,6 +536,27 @@
           }
         }
       }
+    },
+    "Start a timer" : {
+
+    },
+    "Start Timer" : {
+
+    },
+    "T %@" : {
+
+    },
+    "This is an example widget." : {
+
+    },
+    "Timer" : {
+
+    },
+    "Timer is running" : {
+
+    },
+    "Trailing" : {
+
     },
     "weather.button.retry" : {
       "localizations" : {

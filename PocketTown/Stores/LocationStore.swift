@@ -3,7 +3,7 @@ import SwiftUI
 
 @Observable @MainActor
 final class LocationStore {
-    private let locationService = LocationService()
+    private let locationService = LocationService.shared
     private var locationTask: Task<Void, Never>?
     private var authorizationTask: Task<Void, Never>?
     
@@ -19,6 +19,9 @@ final class LocationStore {
         return CLLocation(latitude: userLocation.latitude,
                           longitude: userLocation.longitude)
     }
+    
+    /// ウィジェットで共有
+    private let store = UserDefaults(suiteName: "group.co.utomica.PocketTown")!
     
     // MARK: - Initialization
     init() {
@@ -48,6 +51,8 @@ final class LocationStore {
     func saveUserLocation(_ location: CLLocation) throws {
         let userLocation = UserLocation(latitude: location.coordinate.latitude,
                                         longitude: location.coordinate.longitude)
+        store.set([userLocation.coordinate.latitude,
+                   userLocation.coordinate.longitude], forKey: "LastCoordinate")
         try UserDefaultsStorage.shared.save(userLocation, withKey: UserLocation.userDefautlsKey)
     }
     

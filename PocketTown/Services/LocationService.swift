@@ -3,6 +3,8 @@ import Foundation
 
 @MainActor
 final class LocationService: NSObject {
+    static let shared = LocationService()
+    
     private let locationManager: CLLocationManager
     private var locationContinuation: AsyncStream<CLLocation>.Continuation?
     private var authorizationContinuation: AsyncStream<CLAuthorizationStatus>.Continuation?

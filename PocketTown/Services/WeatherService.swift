@@ -3,6 +3,8 @@ import Foundation
 import CoreLocation
 
 actor WeatherService {
+    static let shared = WeatherService()
+    
     private let weatherService = WeatherKit.WeatherService()
     
     func fetchWeather(for location: CLLocation) async throws -> Weather {
