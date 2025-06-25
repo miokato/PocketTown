@@ -21,16 +21,20 @@ struct Provider: TimelineProvider {
     let store = UserDefaults(suiteName: "group.com.example.pockettown")!
     
     func placeholder(in context: Context) -> WeatherEntry {
-        WeatherEntry(date: Date(),
-                     coordinate: .init(latitude: 35, longitude: 135),
-                     weather: .sample)
+        WeatherEntry(
+            date: Date(),
+            coordinate: .init(latitude: 35, longitude: 135),
+            weather: .sample
+        )
     }
 
     func getSnapshot(in context: Context,
                      completion: @escaping (WeatherEntry) -> ()) {
-        let entry = WeatherEntry(date: Date(),
-                                 coordinate: .init(latitude: 35, longitude: 135),
-                                 weather: .sample)
+        let entry = WeatherEntry(
+            date: Date(),
+            coordinate: .init(latitude: 35, longitude: 135),
+            weather: .sample
+        )
         completion(entry)
     }
 
@@ -49,17 +53,18 @@ struct Provider: TimelineProvider {
                     longitude: coordinate.longitude
                 )
             )
-            
+
             let entry = WeatherEntry(
                 date: .now,
                 coordinate: coordinate,
                 weather: weather
             )
+
             
-            print("entry : \(entry.coordinate), weather: \(entry.weather)")
-            
-            let next = Calendar.current.date(byAdding: .minute, value: 1, to: .now)!
-            completion(Timeline(entries: [entry], policy: .after(next)))
+//            let next = Calendar.current.date(byAdding: .minute, value: 1, to: .now)!
+//            completion(Timeline(entries: [entry], policy: .after(next)))
+            completion(Timeline(entries: [entry], policy: .never))
+
         }
     }
 }

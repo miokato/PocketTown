@@ -51,9 +51,9 @@ extension Weather {
               temprature: .init(value: 30.0, unit: .celsius),
               temperatureMax: .init(value: 40.0, unit: .celsius),
               temperatureMin: .init(value: 10.0, unit: .celsius),
-              humidity: 0.5,
-              symbolName: "cloud",
-              description: String(localized: "weather.condition.cloudy"))
+              humidity: 0.35,
+              symbolName: "sun.max.fill",
+              description: String(localized: "weather.condition.sunShowers"))
     }
 }
 
