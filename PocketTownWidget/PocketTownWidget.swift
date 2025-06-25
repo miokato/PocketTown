@@ -36,19 +36,27 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WeatherEntry>) -> ()) {
         Task {
-            var coord: CLLocationCoordinate2D?
-            if let arr = store.array(forKey: "LastCoordinate") as? [Double], arr.count == 2 {
-                coord = .init(latitude: arr[0], longitude: arr[1])
+            var coordinate: CLLocationCoordinate2D?
+            if let location = store.array(forKey: "LastCoordinate") as? [Double],
+               location.count == 2 {
+                coordinate = .init(latitude: location[0], longitude: location[1])
             }
             
-            guard let c = coord else {
-                return
-            }
-            let weather = try await WeatherService.shared.fetchWeather(for: .init(latitude: c.latitude, longitude: c.longitude))
+            guard let coordinate = coordinate else { return }
+            let weather = try await WeatherService.shared.fetchWeather(
+                for: .init(
+                    latitude: coordinate.latitude,
+                    longitude: coordinate.longitude
+                )
+            )
             
-            let entry = WeatherEntry(date: .now,
-                                     coordinate: c,
-                                     weather: weather)
+            let entry = WeatherEntry(
+                date: .now,
+                coordinate: coordinate,
+                weather: weather
+            )
+            
+            print("entry : \(entry.coordinate), weather: \(entry.weather)")
             
             let next = Calendar.current.date(byAdding: .minute, value: 1, to: .now)!
             completion(Timeline(entries: [entry], policy: .after(next)))
