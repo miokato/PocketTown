@@ -1,7 +1,7 @@
 # CLAUDE.md
 プロジェクトの概要についてはREADME.mdを読んでください。
 
-YOU MUST: Mira.xcodeprojディレクトリ以下のファイルは編集しないでください
+YOU MUST: PocketTown.xcodeprojディレクトリ以下のファイルは編集しないでください
 
 ## ディレクトリ構成
 - PocketTown/Errors/ # エラー関連の処理

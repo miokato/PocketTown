@@ -16,7 +16,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9511FF8D2E09EA8100A45DF3"
+               BlueprintIdentifier = "955062DF2E09EE5C00E26CB1"
                BuildableName = "PocketTownWidgetExtension.appex"
                BlueprintName = "PocketTownWidgetExtension"
                ReferencedContainer = "container:PocketTown.xcodeproj">
@@ -62,7 +62,7 @@
          BundleIdentifier = "com.apple.springboard">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9511FF8D2E09EA8100A45DF3"
+            BlueprintIdentifier = "955062DF2E09EE5C00E26CB1"
             BuildableName = "PocketTownWidgetExtension.appex"
             BlueprintName = "PocketTownWidgetExtension"
             ReferencedContainer = "container:PocketTown.xcodeproj">
