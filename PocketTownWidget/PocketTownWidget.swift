@@ -61,9 +61,8 @@ struct Provider: TimelineProvider {
             )
 
             
-//            let next = Calendar.current.date(byAdding: .minute, value: 1, to: .now)!
-//            completion(Timeline(entries: [entry], policy: .after(next)))
-            completion(Timeline(entries: [entry], policy: .never))
+            let next = Calendar.current.date(byAdding: .minute, value: 1, to: .now)!
+            completion(Timeline(entries: [entry], policy: .after(next)))
 
         }
     }
