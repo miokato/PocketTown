@@ -11,7 +11,7 @@ import SwiftData
 
 struct MapView: View {
     @Environment(LocationStore.self) private var locationStore
-    @Environment(MapPinStore.self) private var mapPinStore
+    @Environment(\.mapPinStore) private var mapPinStore
     @Query var mapPins: [MapPin]
     
     @State private var position: MapCameraPosition = .automatic
@@ -172,6 +172,6 @@ struct MapView: View {
     MapView()
         .environment(LocationStore())
         .environment(\.weatherStore, WeatherStoreMock())
-        .environment(MapPinStore())
+        .environment(\.mapPinStore, MapPinStoreMock())
 }
 

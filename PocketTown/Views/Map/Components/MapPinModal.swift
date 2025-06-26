@@ -13,7 +13,7 @@ struct MapPinModal: View {
     let selectedPin: MapPin?
     
     @Environment(\.dismiss) private var dismiss
-    @Environment(MapPinStore.self) private var mapPinStore
+    @Environment(\.mapPinStore) private var mapPinStore
     @Environment(LocationStore.self) private var locationStore
     @Environment(\.modelContext) private var modelContext
 
@@ -226,6 +226,6 @@ struct MapPinModal: View {
 
 #Preview {
     MapPinModal(selectedPin: nil)
-        .environment(MapPinStore())
+        .environment(\.mapPinStore, MapPinStoreMock())
         .environment(LocationStore())
 }

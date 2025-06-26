@@ -34,7 +34,7 @@ struct PocketTownApp: App {
             MainView()
                 .environment(locationStore)
                 .environment(\.weatherStore, weatherStore)
-                .environment(mapPinStore)
+                .environment(\.mapPinStore, mapPinStore)
         }
         .modelContainer(modelContainer)
     }

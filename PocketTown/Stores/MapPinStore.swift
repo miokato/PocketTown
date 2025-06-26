@@ -11,7 +11,7 @@ import SwiftData
 import CloudKit
 
 @Observable @MainActor
-final class MapPinStore {
+final class MapPinStore: MapPinStoreProtocol {
     // MARK: - public properties
     
     var publicMapPins: [MapPin] = []

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(LocationStore.self) private var locationStore
-    @Environment(\.weatherStore.self) private var weatherStore
-    @Environment(MapPinStore.self) private var mapPinStore
+    @Environment(\.weatherStore) private var weatherStore
+    @Environment(\.mapPinStore) private var mapPinStore
     @Environment(\.scenePhase) var scenePhase
     
     /// アプリ起動時に一度だけ天気を更新
@@ -90,6 +90,6 @@ struct MainView: View {
         MainView()
             .environment(LocationStore())
             .environment(\.weatherStore, WeatherStoreMock())
-            .environment(MapPinStore())
+            .environment(\.mapPinStore, MapPinStoreMock())
     }
 }
