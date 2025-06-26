@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WeatherView: View {
     // MARK: - Properties
-    @Environment(WeatherStore.self) private var weatherStore
+    @Environment(\.weatherStore) private var weatherStore
     @Environment(LocationStore.self) private var locationStore
     
     // MARK: - Body
@@ -84,6 +84,6 @@ struct WeatherView: View {
 
 #Preview {
     WeatherView()
-        .environment(WeatherStore())
+        .environment(\.weatherStore, WeatherStoreMock())
         .environment(LocationStore())
 }

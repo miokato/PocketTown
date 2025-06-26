@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(LocationStore.self) private var locationStore
-    @Environment(WeatherStore.self) private var weatherStore
+    @Environment(\.weatherStore.self) private var weatherStore
     @Environment(MapPinStore.self) private var mapPinStore
     @Environment(\.scenePhase) var scenePhase
     
@@ -89,7 +89,7 @@ struct MainView: View {
     NavigationStack {
         MainView()
             .environment(LocationStore())
-            .environment(WeatherStore())
+            .environment(\.weatherStore, WeatherStoreMock())
             .environment(MapPinStore())
     }
 }

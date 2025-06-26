@@ -3,7 +3,7 @@ import CoreLocation
 import SwiftUI
 
 @Observable @MainActor
-final class WeatherStore {
+final class WeatherStore: WeatherStoreProtocol {
     // MARK: - Properties
     private let weatherService = WeatherService.shared
     

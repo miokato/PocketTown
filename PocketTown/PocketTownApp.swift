@@ -33,7 +33,7 @@ struct PocketTownApp: App {
         WindowGroup {
             MainView()
                 .environment(locationStore)
-                .environment(weatherStore)
+                .environment(\.weatherStore, weatherStore)
                 .environment(mapPinStore)
         }
         .modelContainer(modelContainer)

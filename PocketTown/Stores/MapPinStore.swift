@@ -12,7 +12,11 @@ import CloudKit
 
 @Observable @MainActor
 final class MapPinStore {
+    // MARK: - public properties
+    
     var publicMapPins: [MapPin] = []
+    
+    // MARK: - private properties
     
     private let cloudPublicService = CloudPublicService()
     
@@ -45,21 +49,6 @@ final class MapPinStore {
         context.delete(pin)
     }
     
-    /// PublicRecordNameが登録されているときはiCloudのpublicDBに入っているピンのデータを削除する
-    private func removePublicPinIfNeeded(for pin: MapPin) {
-        if let name = pin.publicRecordName {
-            let id = CKRecord.ID(recordName: name)
-            removePublicPin(id: id)
-            pin.publicRecordName = nil
-        }
-    }
-    
-    private func removePublicPin(id: CKRecord.ID) {
-        Task {
-            try await cloudPublicService.unpublish(recordID: id)
-        }
-    }
-    
     func togglePublic(pin: MapPin, makePublic: Bool) async {
         do {
             if makePublic {
@@ -75,6 +64,23 @@ final class MapPinStore {
         } catch {
             assertionFailure("Failed to toggle public status of a pin.")
             log("\(error)", with: .error)
+        }
+    }
+
+    // MARK: - private Methods
+
+    /// PublicRecordNameが登録されているときはiCloudのpublicDBに入っているピンのデータを削除する
+    private func removePublicPinIfNeeded(for pin: MapPin) {
+        if let name = pin.publicRecordName {
+            let id = CKRecord.ID(recordName: name)
+            removePublicPin(id: id)
+            pin.publicRecordName = nil
+        }
+    }
+    
+    private func removePublicPin(id: CKRecord.ID) {
+        Task {
+            try await cloudPublicService.unpublish(recordID: id)
         }
     }
 }

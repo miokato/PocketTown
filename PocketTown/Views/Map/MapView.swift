@@ -171,7 +171,7 @@ struct MapView: View {
 #Preview {
     MapView()
         .environment(LocationStore())
-        .environment(WeatherStore())
+        .environment(\.weatherStore, WeatherStoreMock())
         .environment(MapPinStore())
 }
 
