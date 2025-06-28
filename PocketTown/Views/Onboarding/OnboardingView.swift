@@ -71,7 +71,7 @@ struct OnboardingView: View {
     
     @ViewBuilder
     private var updateUserLocationButton: some View {
-        Button("現在位置でホームを更新") {
+        Button(String(localized: "onboarding.button.updateHome")) {
             handleUpdateButtonTapped()
         }
         .padding(.horizontal, 20)
@@ -81,7 +81,7 @@ struct OnboardingView: View {
     
     @ViewBuilder
     private var cancelButton: some View {
-        Button("キャンセル") {
+        Button(String(localized: "mapsheet.button.cancel")) {
             handleCancelButtonTapped()
         }
         .padding(.horizontal, 20)

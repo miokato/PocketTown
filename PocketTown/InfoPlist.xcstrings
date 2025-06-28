@@ -10,6 +10,12 @@
             "state" : "new",
             "value" : "PocketTown"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "まちポケット"
+          }
         }
       }
     },
@@ -20,7 +26,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Use location information to display weather and maps."
+            "value" : "地図で現在位置を表示するために利用します"
           }
         },
         "ja" : {
@@ -38,7 +44,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Use location information to display weather and maps."
+            "value" : "地図で現在位置を表示するために利用します"
           }
         },
         "ja" : {
@@ -56,7 +62,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Use location information to display weather and maps."
+            "value" : "地図で現在位置を表示するために利用します"
           }
         },
         "ja" : {

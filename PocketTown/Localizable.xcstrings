@@ -446,6 +446,22 @@
         }
       }
     },
+    "onboarding.button.updateHome" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Home with Current Location"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在位置でホームを更新"
+          }
+        }
+      }
+    },
     "onboarding.description.location" : {
       "localizations" : {
         "en" : {
@@ -1122,6 +1138,7 @@
       }
     },
     "キャンセル" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1238,9 +1255,6 @@
           }
         }
       }
-    },
-    "現在位置でホームを更新" : {
-
     },
     "経度: %@" : {
       "extractionState" : "stale",

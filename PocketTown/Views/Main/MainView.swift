@@ -49,10 +49,10 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             TabView {
-                Tab("Map", systemImage: "map") {
+                Tab(String(localized: "Map"), systemImage: "map") {
                     MapView()
                 }
-                Tab("Pocket", systemImage: "list.bullet") {
+                Tab(String(localized: "Pocket"), systemImage: "list.bullet") {
                     PocketView()
                 }
 

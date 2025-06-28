@@ -127,7 +127,7 @@ struct MapPinModal: View {
             }
         }
         .alert("mapsheet.alert.title", isPresented: $showEmptyTitleAlert) {
-            Button("OK") {
+            Button(String(localized: "OK")) {
                 isTitleFieldFocused = true
             }
         }
