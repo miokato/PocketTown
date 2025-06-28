@@ -46,6 +46,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AE49ACBA2E0F906700702EF6 /* Exceptions for "docs" folder in "PocketTown" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				PrivacyPolicy/PrivacyPolicyEnglish.md,
+			);
+			target = 95CE206A2DFCE5EB00301962 /* PocketTown */;
+		};
 		AED2884B2DFECCFD0024BBA0 /* Exceptions for "PocketTown" folder in "PocketTown" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -55,6 +62,16 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		AE49ACBB2E0F906700702EF6 /* Exceptions for "docs" folder in "Compile Sources" phase from "PocketTown" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 95CE20672DFCE5EB00301962 /* Sources */;
+			membershipExceptions = (
+				PrivacyPolicy/PrivacyPolicyEnglish.md,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		95CE206D2DFCE5EB00301962 /* PocketTown */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -62,6 +79,15 @@
 				AED2884B2DFECCFD0024BBA0 /* Exceptions for "PocketTown" folder in "PocketTown" target */,
 			);
 			path = PocketTown;
+			sourceTree = "<group>";
+		};
+		AE49ACB52E0F903800702EF6 /* docs */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AE49ACBA2E0F906700702EF6 /* Exceptions for "docs" folder in "PocketTown" target */,
+				AE49ACBB2E0F906700702EF6 /* Exceptions for "docs" folder in "Compile Sources" phase from "PocketTown" target */,
+			);
+			path = docs;
 			sourceTree = "<group>";
 		};
 		AE927BDA2E07E57C003388A0 /* PocketTownTests */ = {
@@ -101,6 +127,7 @@
 		95CE20622DFCE5EB00301962 = {
 			isa = PBXGroup;
 			children = (
+				AE49ACB52E0F903800702EF6 /* docs */,
 				95CE20952DFCE85000301962 /* .gitignore */,
 				95CE20912DFCE84000301962 /* CLAUDE.md */,
 				95CE20932DFCE84600301962 /* README.md */,
@@ -138,6 +165,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				95CE206D2DFCE5EB00301962 /* PocketTown */,
+				AE49ACB52E0F903800702EF6 /* docs */,
 			);
 			name = PocketTown;
 			packageProductDependencies = (
