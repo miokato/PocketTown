@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="PocketTown/InfoPlist.xcstrings" source-language="en" target-language="ja" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.4" build-num="16F6"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>PocketTown</source>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSLocationAlwaysAndWhenInUseUsageDescription" xml:space="preserve">
+        <source>地図で現在位置を表示するために利用します</source>
+        <note>Privacy - Location Always and When In Use Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSLocationAlwaysUsageDescription" xml:space="preserve">
+        <source>地図で現在位置を表示するために利用します</source>
+        <note>Privacy - Location Always Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSLocationWhenInUseUsageDescription" xml:space="preserve">
+        <source>地図で現在位置を表示するために利用します</source>
+        <note>Privacy - Location When In Use Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="PocketTown/Localizable.xcstrings" source-language="en" target-language="ja" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="16.4" build-num="16F6"/>
+    </header>
+    <body>
+      <trans-unit id="%@" xml:space="preserve">
+        <source>%@</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="%lld%%" xml:space="preserve">
+        <source>%lld%%</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id=": %@" xml:space="preserve">
+        <source>: %@</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Map" xml:space="preserve">
+        <source>Map</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="MapItem" xml:space="preserve">
+        <source>MapItem</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="Pocket" xml:space="preserve">
+        <source>Pocket</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="app.title" xml:space="preserve">
+        <source>Pocket Town</source>
+        <target state="translated">まちポケット</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="error.location.permission" xml:space="preserve">
+        <source>Location permission denied</source>
+        <target state="translated">位置情報の使用が許可されていません</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="error.location.unavailable" xml:space="preserve">
+        <source>Location unavailable</source>
+        <target state="translated">現在位置を取得できません</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="error.network" xml:space="preserve">
+        <source>Network error occurred</source>
+        <target state="translated">ネットワークエラーが発生しました</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="error.weather.unavailable" xml:space="preserve">
+        <source>Weather service unavailable</source>
+        <target state="translated">天気情報サービスが利用できません</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="map.button.settings" xml:space="preserve">
+        <source>Open Settings</source>
+        <target state="translated">設定を開く</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="map.error.message" xml:space="preserve">
+        <source>An error occurred while getting location</source>
+        <target state="translated">位置情報の取得中にエラーが発生しました</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="map.error.title" xml:space="preserve">
+        <source>Location Error</source>
+        <target state="translated">位置情報エラー</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="map.permission.message" xml:space="preserve">
+        <source>Please allow location access in Settings</source>
+        <target state="translated">設定アプリから位置情報の使用を許可してください</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="map.permission.title" xml:space="preserve">
+        <source>Location Access Required</source>
+        <target state="translated">位置情報へのアクセスが必要です</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.alert.delete" xml:space="preserve">
+        <source>Are you sure you want to delete?</source>
+        <target state="translated">削除しますか</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.alert.title" xml:space="preserve">
+        <source>Please enter a title</source>
+        <target state="translated">タイトルを入力してください</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.button.cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target state="translated">キャンセル</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.button.delete" xml:space="preserve">
+        <source>Delete</source>
+        <target state="translated">削除</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.button.save" xml:space="preserve">
+        <source>Save</source>
+        <target state="translated">保存</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.label.coordinates" xml:space="preserve">
+        <source>Coordinates</source>
+        <target state="translated">座標</target>
+        <note>Coordinates label</note>
+      </trans-unit>
+      <trans-unit id="mapsheet.label.latitude" xml:space="preserve">
+        <source>Latitude</source>
+        <target state="translated">緯度</target>
+        <note>Latitude label</note>
+      </trans-unit>
+      <trans-unit id="mapsheet.label.longitude" xml:space="preserve">
+        <source>Longitude</source>
+        <target state="translated">経度</target>
+        <note>Longitude label</note>
+      </trans-unit>
+      <trans-unit id="mapsheet.label.note" xml:space="preserve">
+        <source>Note</source>
+        <target state="translated">説明</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.label.public" xml:space="preserve">
+        <source>Make Public</source>
+        <target state="translated">公開する</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.label.public.description" xml:space="preserve">
+        <source>If made public, all users using the same app will be able to view this.</source>
+        <target state="translated">公開すると同じアプリを利用しているすべてのユーザーが閲覧できます。</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.label.title" xml:space="preserve">
+        <source>Title</source>
+        <target state="translated">タイトル</target>
+        <note>Title label for the map pin</note>
+      </trans-unit>
+      <trans-unit id="mapsheet.placeholder.note" xml:space="preserve">
+        <source>Enter place description</source>
+        <target state="translated">場所の説明を入力</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapsheet.placeholder.title" xml:space="preserve">
+        <source>Enter place name</source>
+        <target state="translated">場所の名前を入力</target>
+        <note>Placeholder for pin title</note>
+      </trans-unit>
+      <trans-unit id="mapsheet.title" xml:space="preserve">
+        <source>New Pin</source>
+        <target state="translated">新しいピン</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="onboarding.button.start" xml:space="preserve">
+        <source>Start</source>
+        <target state="translated">はじめる</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="onboarding.description.location" xml:space="preserve">
+        <source>Get your current location and set it as your home.</source>
+        <target state="translated">現在位置を取得して、ホームに設定してください。</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="onboarding.description.main" xml:space="preserve">
+        <source>Pocket Town is an app that lets you register your favorite shops and places on a map within a 1km radius of your home.</source>
+        <target state="translated">まちポケットは自分の家の半径1km圏内の地図に、お気に入りのお店や場所を登録するアプリです。</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="onboarding.description.radius" xml:space="preserve">
+        <source>The blue circle displayed in the app represents a 1km radius.</source>
+        <target state="translated">アプリに表示されている青い円が半径1km圏内を表しています。</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="publicpin.error.notfound" xml:space="preserve">
+        <source>Pin does not exist</source>
+        <target state="translated">存在しないピンです</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.button.retry" xml:space="preserve">
+        <source>Retry</source>
+        <target state="translated">再試行</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.blizzard" xml:space="preserve">
+        <source>Blizzard</source>
+        <target state="translated">吹雪</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.blowingSnow" xml:space="preserve">
+        <source>Blowing Snow</source>
+        <target state="translated">地吹雪</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.breezy" xml:space="preserve">
+        <source>Breezy</source>
+        <target state="translated">そよ風</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.clear" xml:space="preserve">
+        <source>Clear</source>
+        <target state="translated">晴れ</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.cloudy" xml:space="preserve">
+        <source>Cloudy</source>
+        <target state="translated">曇り</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.drizzle" xml:space="preserve">
+        <source>Drizzle</source>
+        <target state="translated">霧雨</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.dust" xml:space="preserve">
+        <source>Dust</source>
+        <target state="translated">砂塵</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.flurries" xml:space="preserve">
+        <source>Flurries</source>
+        <target state="translated">にわか雪</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.foggy" xml:space="preserve">
+        <source>Foggy</source>
+        <target state="translated">霧</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.freezingDrizzle" xml:space="preserve">
+        <source>Freezing Drizzle</source>
+        <target state="translated">着氷性の霧雨</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.freezingRain" xml:space="preserve">
+        <source>Freezing Rain</source>
+        <target state="translated">着氷性の雨</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.frigid" xml:space="preserve">
+        <source>Frigid</source>
+        <target state="translated">極寒</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.hail" xml:space="preserve">
+        <source>Hail</source>
+        <target state="translated">ひょう</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.haze" xml:space="preserve">
+        <source>Haze</source>
+        <target state="translated">もや</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.heavyRain" xml:space="preserve">
+        <source>Heavy Rain</source>
+        <target state="translated">大雨</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.heavySnow" xml:space="preserve">
+        <source>Heavy Snow</source>
+        <target state="translated">大雪</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.hot" xml:space="preserve">
+        <source>Hot</source>
+        <target state="translated">猛暑</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.hurricane" xml:space="preserve">
+        <source>Hurricane</source>
+        <target state="translated">ハリケーン</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.isolatedThunderstorms" xml:space="preserve">
+        <source>Isolated Thunderstorms</source>
+        <target state="translated">ところにより雷雨</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.mostlyClear" xml:space="preserve">
+        <source>Mostly Clear</source>
+        <target state="translated">おおむね晴れ</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.mostlyCloudy" xml:space="preserve">
+        <source>Mostly Cloudy</source>
+        <target state="translated">おおむね曇り</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.partlyCloudy" xml:space="preserve">
+        <source>Partly Cloudy</source>
+        <target state="translated">晴れ時々曇り</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.rain" xml:space="preserve">
+        <source>Rain</source>
+        <target state="translated">雨</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.scatteredThunderstorms" xml:space="preserve">
+        <source>Scattered Thunderstorms</source>
+        <target state="translated">ところどころ雷雨</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.sleet" xml:space="preserve">
+        <source>Sleet</source>
+        <target state="translated">みぞれ</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.smoky" xml:space="preserve">
+        <source>Smoky</source>
+        <target state="translated">煙霧</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.snow" xml:space="preserve">
+        <source>Snow</source>
+        <target state="translated">雪</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.strongStorms" xml:space="preserve">
+        <source>Strong Storms</source>
+        <target state="translated">激しい嵐</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.sunFlurries" xml:space="preserve">
+        <source>Sun Flurries</source>
+        <target state="translated">晴れ時々雪</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.sunShowers" xml:space="preserve">
+        <source>Sun Showers</source>
+        <target state="translated">晴れ時々雨</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.thunderstorm" xml:space="preserve">
+        <source>Thunderstorm</source>
+        <target state="translated">雷雨</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.tropicalStorm" xml:space="preserve">
+        <source>Tropical Storm</source>
+        <target state="translated">熱帯低気圧</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.unknown" xml:space="preserve">
+        <source>Unknown</source>
+        <target state="translated">不明</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.windy" xml:space="preserve">
+        <source>Windy</source>
+        <target state="translated">強風</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.condition.wintryMix" xml:space="preserve">
+        <source>Wintry Mix</source>
+        <target state="translated">雨雪混じり</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.error.unavailable" xml:space="preserve">
+        <source>Weather unavailable</source>
+        <target state="translated">天気情報を取得できません</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="weather.loading.message" xml:space="preserve">
+        <source>Loading weather...</source>
+        <target state="translated">天気情報を取得中...</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="キャンセル" xml:space="preserve">
+        <source>Cancel</source>
+        <target state="translated">キャンセル</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="タイトル" xml:space="preserve">
+        <source>Title</source>
+        <target state="translated">タイトル</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="タイトルを入力してください" xml:space="preserve">
+        <source>Please enter a title</source>
+        <target state="translated">タイトルを入力してください</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="保存" xml:space="preserve">
+        <source>Save</source>
+        <target state="translated">保存</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="場所の名前を入力" xml:space="preserve">
+        <source>Enter place name</source>
+        <target state="translated">場所の名前を入力</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="座標" xml:space="preserve">
+        <source>Coordinates</source>
+        <target state="translated">座標</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="新しいピン" xml:space="preserve">
+        <source>New Pin</source>
+        <target state="translated">新しいピン</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="現在位置でホームを更新" xml:space="preserve">
+        <source>現在位置でホームを更新</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="経度: %@" xml:space="preserve">
+        <source>Longitude: %@</source>
+        <target state="translated">経度: %@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="緯度: %@" xml:space="preserve">
+        <source>Latitude: %@</source>
+        <target state="translated">緯度: %@</target>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

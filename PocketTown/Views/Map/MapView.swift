@@ -68,7 +68,7 @@ struct MapView: View {
             selectedPin = pin
             zoomInCameraToCoordinate(pin.coordinate)
             isShowPublicPinModal = true
-        case .poi(let item):
+        case .poi(_):
             break
         }
     }
