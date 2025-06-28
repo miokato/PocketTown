@@ -7,22 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		955062E32E09EE5C00E26CB1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955062E22E09EE5C00E26CB1 /* WidgetKit.framework */; };
-		955062E52E09EE5C00E26CB1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955062E42E09EE5C00E26CB1 /* SwiftUI.framework */; };
-		955062F42E09EE5D00E26CB1 /* PocketTownWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 955062E02E09EE5C00E26CB1 /* PocketTownWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		95CE20922DFCE84000301962 /* CLAUDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 95CE20912DFCE84000301962 /* CLAUDE.md */; };
 		95CE20942DFCE84600301962 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 95CE20932DFCE84600301962 /* README.md */; };
 		95CE20962DFCE85000301962 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 95CE20952DFCE85000301962 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		955062F22E09EE5D00E26CB1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95CE20632DFCE5EB00301962 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 955062DF2E09EE5C00E26CB1;
-			remoteInfo = PocketTownWidgetExtension;
-		};
 		AE927BDD2E07E57C003388A0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 95CE20632DFCE5EB00301962 /* Project object */;
@@ -39,7 +29,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				955062F42E09EE5D00E26CB1 /* PocketTownWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,10 +36,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		955062E02E09EE5C00E26CB1 /* PocketTownWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PocketTownWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		955062E22E09EE5C00E26CB1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		955062E42E09EE5C00E26CB1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		9550630C2E0A08B600E26CB1 /* PocketTownWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PocketTownWidgetExtension.entitlements; sourceTree = "<group>"; };
 		95CE206B2DFCE5EB00301962 /* PocketTown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketTown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95CE20912DFCE84000301962 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
 		95CE20932DFCE84600301962 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -59,24 +46,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		955062F92E09EE5D00E26CB1 /* Exceptions for "PocketTownWidget" folder in "PocketTownWidgetExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 955062DF2E09EE5C00E26CB1 /* PocketTownWidgetExtension */;
-		};
-		955062FB2E09F09900E26CB1 /* Exceptions for "PocketTown" folder in "PocketTownWidgetExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Extensions/DateFormatter+.swift",
-				Localizable.xcstrings,
-				Models/Weather.swift,
-				Services/WeatherService.swift,
-				Supports/Log.swift,
-			);
-			target = 955062DF2E09EE5C00E26CB1 /* PocketTownWidgetExtension */;
-		};
 		AED2884B2DFECCFD0024BBA0 /* Exceptions for "PocketTown" folder in "PocketTown" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -87,19 +56,10 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		955062E62E09EE5C00E26CB1 /* PocketTownWidget */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				955062F92E09EE5D00E26CB1 /* Exceptions for "PocketTownWidget" folder in "PocketTownWidgetExtension" target */,
-			);
-			path = PocketTownWidget;
-			sourceTree = "<group>";
-		};
 		95CE206D2DFCE5EB00301962 /* PocketTown */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				AED2884B2DFECCFD0024BBA0 /* Exceptions for "PocketTown" folder in "PocketTown" target */,
-				955062FB2E09F09900E26CB1 /* Exceptions for "PocketTown" folder in "PocketTownWidgetExtension" target */,
 			);
 			path = PocketTown;
 			sourceTree = "<group>";
@@ -112,15 +72,6 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		955062DD2E09EE5C00E26CB1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				955062E52E09EE5C00E26CB1 /* SwiftUI.framework in Frameworks */,
-				955062E32E09EE5C00E26CB1 /* WidgetKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		95CE20682DFCE5EB00301962 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,13 +101,11 @@
 		95CE20622DFCE5EB00301962 = {
 			isa = PBXGroup;
 			children = (
-				9550630C2E0A08B600E26CB1 /* PocketTownWidgetExtension.entitlements */,
 				95CE20952DFCE85000301962 /* .gitignore */,
 				95CE20912DFCE84000301962 /* CLAUDE.md */,
 				95CE20932DFCE84600301962 /* README.md */,
 				95CE206D2DFCE5EB00301962 /* PocketTown */,
 				AE927BDA2E07E57C003388A0 /* PocketTownTests */,
-				955062E62E09EE5C00E26CB1 /* PocketTownWidget */,
 				955062E12E09EE5C00E26CB1 /* Frameworks */,
 				95CE206C2DFCE5EB00301962 /* Products */,
 			);
@@ -167,7 +116,6 @@
 			children = (
 				95CE206B2DFCE5EB00301962 /* PocketTown.app */,
 				AE927BD92E07E57C003388A0 /* PocketTownTests.xctest */,
-				955062E02E09EE5C00E26CB1 /* PocketTownWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,28 +123,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		955062DF2E09EE5C00E26CB1 /* PocketTownWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 955062F82E09EE5D00E26CB1 /* Build configuration list for PBXNativeTarget "PocketTownWidgetExtension" */;
-			buildPhases = (
-				955062DC2E09EE5C00E26CB1 /* Sources */,
-				955062DD2E09EE5C00E26CB1 /* Frameworks */,
-				955062DE2E09EE5C00E26CB1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				955062E62E09EE5C00E26CB1 /* PocketTownWidget */,
-			);
-			name = PocketTownWidgetExtension;
-			packageProductDependencies = (
-			);
-			productName = PocketTownWidgetExtension;
-			productReference = 955062E02E09EE5C00E26CB1 /* PocketTownWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		95CE206A2DFCE5EB00301962 /* PocketTown */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95CE20762DFCE5EC00301962 /* Build configuration list for PBXNativeTarget "PocketTown" */;
@@ -209,7 +135,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				955062F32E09EE5D00E26CB1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				95CE206D2DFCE5EB00301962 /* PocketTown */,
@@ -254,9 +179,6 @@
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					955062DF2E09EE5C00E26CB1 = {
-						CreatedOnToolsVersion = 16.3;
-					};
 					95CE206A2DFCE5EB00301962 = {
 						CreatedOnToolsVersion = 16.3;
 					};
@@ -283,19 +205,11 @@
 			targets = (
 				95CE206A2DFCE5EB00301962 /* PocketTown */,
 				AE927BD82E07E57C003388A0 /* PocketTownTests */,
-				955062DF2E09EE5C00E26CB1 /* PocketTownWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		955062DE2E09EE5C00E26CB1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		95CE20692DFCE5EB00301962 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -316,13 +230,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		955062DC2E09EE5C00E26CB1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		95CE20672DFCE5EB00301962 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -340,11 +247,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		955062F32E09EE5D00E26CB1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 955062DF2E09EE5C00E26CB1 /* PocketTownWidgetExtension */;
-			targetProxy = 955062F22E09EE5D00E26CB1 /* PBXContainerItemProxy */;
-		};
 		AE927BDE2E07E57C003388A0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 95CE206A2DFCE5EB00301962 /* PocketTown */;
@@ -353,66 +255,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		955062F62E09EE5D00E26CB1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PocketTownWidgetExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6G9A5395V2;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PocketTownWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = PocketTownWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSLocationUsageDescription = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.utomica.PocketTown.PocketTownWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		955062F72E09EE5D00E26CB1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PocketTownWidgetExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6G9A5395V2;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PocketTownWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = PocketTownWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSLocationUsageDescription = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.utomica.PocketTown.PocketTownWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		95CE20742DFCE5EC00301962 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -578,7 +420,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = PocketTown/PocketTown.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PocketTown/PocketTownRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6G9A5395V2;
@@ -649,15 +491,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		955062F82E09EE5D00E26CB1 /* Build configuration list for PBXNativeTarget "PocketTownWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				955062F62E09EE5D00E26CB1 /* Debug */,
-				955062F72E09EE5D00E26CB1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		95CE20662DFCE5EB00301962 /* Build configuration list for PBXProject "PocketTown" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
