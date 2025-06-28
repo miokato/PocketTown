@@ -18,7 +18,7 @@ struct WeatherEntry: TimelineEntry {
 
 struct Provider: TimelineProvider {
     
-    let store = UserDefaults(suiteName: "group.com.example.pockettown")!
+    let store = UserDefaults(suiteName: "group.co.utomica.PocketTown")!
     
     func placeholder(in context: Context) -> WeatherEntry {
         WeatherEntry(
