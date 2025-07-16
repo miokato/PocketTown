@@ -421,9 +421,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PocketTown/Info.plist;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "地図で現在位置を表示するために利用します";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "地図で現在位置を表示するために利用します";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "地図で現在位置を表示するために利用します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location information is used to display the weather and the map.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Location information is used to display the weather and the map.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location information is used to display the weather and the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -460,9 +460,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PocketTown/Info.plist;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "地図で現在位置を表示するために利用します";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "地図で現在位置を表示するために利用します";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "地図で現在位置を表示するために利用します";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location information is used to display the weather and the map.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Location information is used to display the weather and the map.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location information is used to display the weather and the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
