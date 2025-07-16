@@ -26,7 +26,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "地図で現在位置を表示するために利用します"
+            "value" : "Location information is used to display the weather and the map."
           }
         },
         "ja" : {
@@ -44,7 +44,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "地図で現在位置を表示するために利用します"
+            "value" : "Location information is used to display the weather and the map."
           }
         },
         "ja" : {
@@ -62,7 +62,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "地図で現在位置を表示するために利用します"
+            "value" : "Location information is used to display the weather and the map."
           }
         },
         "ja" : {
