@@ -21,10 +21,10 @@ struct WeatherContentView: View {
     
     var body: some View {
         HStack(spacing: 10) {
-            VStack {
+            VStack(spacing: 8) {
                 // 天気アイコン
                 Image(systemName: weather.symbolName)
-                    .font(.system(size: 50))
+                    .font(.largeTitle)
                     .foregroundStyle(.tint)
                     .symbolRenderingMode(.multicolor)
                 // 天気の説明
@@ -35,31 +35,26 @@ struct WeatherContentView: View {
             
             VStack(alignment: .leading, spacing: 8) {
                 // 現在の気温
-                HStack(spacing: 12) {
-                    Text(temperatureFormatter.string(from: weather.temperature))
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.textPrimary)
-                }
+                Text(temperatureFormatter.string(from: weather.temperature))
+                    .font(.title2)
+                    .foregroundColor(.textPrimary)
                 
                 // 最高/最低気温
                 HStack(spacing: 4) {
                     Label(temperatureFormatter.string(from: weather.temperatureMax), systemImage: "arrow.up")
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundColor(.red)
                     Label(temperatureFormatter.string(from: weather.temperatureMin), systemImage: "arrow.down")
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundColor(.blue)
                 }
                 
                 // 湿度
                 Label("\(Int(weather.humidity * 100))%", systemImage: "humidity")
-                    .font(.caption)
+                    .font(.caption2)
                     .foregroundColor(.textSecondary)
                 
             }
-            
-            Spacer()
         }
     }
 }

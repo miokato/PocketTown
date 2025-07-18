@@ -13,8 +13,11 @@ public struct WeatherDateTimeView: View {
     public var body: some View {
         HStack {
             DateTimeView()
+            Spacer()
             WeatherContentView(weather: weather)
         }
+        .padding()
+        .frame(maxWidth: .infinity)
         .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 4))
     }
 }

@@ -22,18 +22,17 @@ struct DateTimeView: View {
             // 月日
             Text(DateFormatter.monthDay.string(from: currentDate))
                 .font(.title2)
-                .fontWeight(.medium)
                 .foregroundColor(.textPrimary)
             // 曜日
             Text(DateFormatter.weekday.string(from: currentDate))
                 .font(.body)
                 .foregroundColor(.textSecondary)
             Divider()
+                .frame(width: 120)
                 .padding(.horizontal)
             // 時刻
             Text(DateFormatter.time.string(from: currentDate))
-                .font(.title)
-                .fontWeight(.semibold)
+                .font(.title2)
                 .foregroundColor(.textPrimary)
                 .monospacedDigit()
         }
