@@ -529,6 +529,9 @@
         }
       }
     },
+    "Weather data provided by Apple Weather" : {
+
+    },
     "weather.button.retry" : {
       "localizations" : {
         "en" : {
@@ -1289,6 +1292,9 @@
           }
         }
       }
+    },
+    " Weather" : {
+
     }
   },
   "version" : "1.0"

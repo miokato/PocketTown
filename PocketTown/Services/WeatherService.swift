@@ -2,10 +2,15 @@ import Foundation
 @preconcurrency import WeatherKit
 import CoreLocation
 
-actor WeatherService {
+@MainActor
+final class WeatherService {
     static let shared = WeatherService()
     
     private let weatherService = WeatherKit.WeatherService()
+    
+    func attribution() async throws -> WeatherAttribution {
+        try await weatherService.attribution
+    }
     
     func fetchWeather(for location: CLLocation) async throws -> Weather {
         let weather = try await weatherService.weather(for: location)
