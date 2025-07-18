@@ -30,7 +30,7 @@ struct AppleWeatherBadge: View {
         Button {
             if let url = legalURL { UIApplication.shared.open(url) }
         } label: {
-            HStack(spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
                 if let imageUrl {
                     AsyncImage(url: imageUrl) { phase in
                         switch phase {
@@ -48,6 +48,8 @@ struct AppleWeatherBadge: View {
                         }
                     }
                 }
+                Text("Weather data provided by Apple Weather")
+                    .font(.caption2)
             }
         }
         .buttonStyle(.plain)
