@@ -38,6 +38,7 @@ struct WeatherContentView: View {
                     // 現在の気温
                     Text(temperatureFormatter.string(from: weather.temperature))
                         .font(.title2)
+                        .bold()
                         .foregroundColor(.textPrimary)
                     
                     // 最高/最低気温
